@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  /* ERROR: --color-brand-primary: #085f63; 
+     CORRECTO: Se define simplemente como --color-*:
+  */
+  --color-brand-primary: #085f63;
+  --color-brand-secondary: #49beb7;
+  --color-brand-accent: #49beb7;
+  --color-brand-bg: #ffffff;
+
+  --font-brand: 'Montserrat Alternates', sans-serif;
+}
+
+/* Opcional: Aplicar la fuente globalmente */
+@layer base {
+  body {
+    font-family: var(--font-brand);
+    background-color: var(--color-background);
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-bold text-brand-primary;
+  }
+}
