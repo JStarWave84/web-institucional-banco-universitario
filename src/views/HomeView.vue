@@ -12,8 +12,8 @@ import {
 <template>
   <!--Hero section-->
   <section class="pt-20 pb-32 bg-brand-bg">
-    <div class="flex items-center gap-12 px-6">
-      <div class="flex flex-col gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 px-6">
+      <div class="flex flex-col justify-center gap-6">
         <span
           class="text-brand-primary bg-teal-300/30 px-4 py-2 uppercase text-[14px] font-bold rounded-4xl w-max"
           >El Banco de la Nueva Generación</span
@@ -33,7 +33,7 @@ import {
         <div class="flex pt-4 gap-4">
           <a
             href="#"
-            class="bg-brand-primary text-white font-bold leading-7 px-8 py-4 rounded-4xl hover:bg-brand-secondary transition-colors"
+            class="bg-brand-primary text-white font-bold leading-7 px-8 py-4 rounded-4xl shadow-lg hover:bg-brand-secondary transition-colors"
           >
             Abre tu cuenta ahora
           </a>
@@ -49,7 +49,7 @@ import {
         <img
           src="../assets/img/hero-image.jpg"
           alt="Imagen de estudiantes universitarios usando el banco"
-          class="w-full max-w-lg rounded-[48px] shadow-lg object-cover"
+          class="w-full rounded-[48px] shadow-lg object-cover"
         />
         <!-- Highlight Card -->
         <div
