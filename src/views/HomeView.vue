@@ -12,34 +12,34 @@ import {
 <template>
   <!--Hero section-->
   <section class="pt-20 pb-32 bg-brand-bg">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 px-6">
       <div class="flex flex-col gap-6">
         <span
           class="text-brand-primary bg-teal-300/30 px-4 py-2 uppercase text-[14px] font-bold rounded-4xl w-max"
           >El Banco de la Nueva Generación</span
         >
-        <h1 class="font-extrabold text-[72px] leading-18">
+        <h1 class="font-extrabold text-[42px] md:text-[72px] leading-11 md:leading-18">
           Tu futuro <br />
           <span class="text-[#00928b]">comienza aquí</span>
         </h1>
 
-        <div class="pt-2 w-lg">
-          <p class="text-[20px] leading-7 text-page-text">
+        <div class="pt-2 w-full md:w-lg">
+          <p class="text-[18px] md:text-[20px] leading-7 text-page-text">
             Diseñado específicamente para el ecosistema académico. Gestiona tus finanzas, recibe tu
             beca y paga tu matrícula con la agilidad que tu vida universitaria exige.
           </p>
         </div>
 
-        <div class="flex pt-4 gap-4">
+        <div class="flex flex-col gap-4 pt-4 sm:flex-row sm:items-center">
           <a
             href="#"
-            class="bg-brand-primary text-white font-bold leading-7 px-8 py-4 rounded-4xl shadow-lg hover:bg-brand-secondary transition-colors"
+            class="bg-brand-primary text-white font-bold leading-7 px-8 py-4 rounded-4xl shadow-lg hover:bg-brand-secondary transition-colors w-full sm:w-auto text-center"
           >
             Abre tu cuenta ahora
           </a>
           <a
             href="#"
-            class="bg-gray-200 text-brand-primary font-bold leading-7 px-8 py-4 flex items-center gap-2 rounded-4xl hover:bg-brand-primary hover:text-white transition-colors"
+            class="bg-gray-200 text-brand-primary font-bold leading-7 px-8 py-4 flex items-center justify-center gap-2 rounded-4xl hover:bg-brand-primary hover:text-white transition-colors w-full sm:w-auto"
           >
             <CirclePlay /> Ver tutorial
           </a>
@@ -53,7 +53,7 @@ import {
         />
         <!-- Highlight Card -->
         <div
-          class="rounded-4xl shadow-lg px-6 py-6 flex gap-4 relative -left-6 -top-18 bg-white w-81"
+          class="rounded-4xl shadow-lg px-6 py-6 flex gap-4 relative mx-auto lg:mx-0 lg:-left-6 -top-18 bg-white w-81"
         >
           <div class="bg-teal-300 rounded-4xl p-2 flex items-center">
             <ShieldCheck class="text-brand-primary" />
@@ -125,8 +125,8 @@ import {
 
   <!--Education section-->
   <section class="px-6 py-24 bg-brand-bg">
-    <div class="flex gap-16">
-      <div class="hidden lg:block w-1/2">
+    <div class="flex flex-col gap-12 lg:flex-row lg:gap-16">
+      <div class="hidden lg:block lg:w-1/2">
         <img
           src="../assets/img/education-image.jpg"
           alt="Imagen de estudiantes universitarios aprendiendo sobre finanzas"
@@ -134,7 +134,7 @@ import {
         />
       </div>
 
-      <div class="flex flex-col w-1/2 justify-center gap-4">
+      <div class="flex flex-col w-full lg:w-1/2 justify-center gap-4">
         <span class="font-bold text-[14px] leading-5 tracking-[1.4px] text-brand-primary uppercase"
           >Formación para el Futuro</span
         >
@@ -179,8 +179,8 @@ import {
 
   <!-- Social media CTA-->
   <section class="py-12 bg-teal-100/50">
-    <div class="px-6 flex justify-between">
-      <div>
+    <div class="px-6 flex flex-col gap-8 lg:flex-row lg:justify-between lg:items-start">
+      <div class="max-w-full lg:max-w-120">
         <h2 class="font-bold text-[24px] leading-8 text-brand-primary">
           Únete a nuestras redes sociales
         </h2>
@@ -188,8 +188,8 @@ import {
           Entérate de sorteos, eventos y nuevos beneficios cada semana.
         </p>
       </div>
-      <div>
-        <div class="grid grid-cols-3 gap-6">
+      <div class="w-full lg:w-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
           <div class="flex items-center gap-3">
             <a
               href="https://www.facebook.com/bancouniversitariove"
