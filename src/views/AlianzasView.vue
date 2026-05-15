@@ -1,12 +1,12 @@
 <script setup>
 import {
-  Briefcase,
   BookOpen,
   GraduationCap,
   ShieldCheck,
   Building,
   ArrowRight,
   Stars,
+  CheckCircle,
 } from '@lucide/vue'
 
 const partners = [
@@ -155,6 +155,79 @@ const partners = [
               Explorar vacantes <ArrowRight class="w-4 h-4" />
             </a>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#04403b] py-24">
+    <div class="mx-auto max-w-[1220px] px-6">
+      <div class="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] items-center">
+        <div class="space-y-8 text-white">
+          <div class="max-w-xl">
+
+            <h2 class="text-[#ffffff] mt-5 text-[36px] md:text-[38px] font-extrabold leading-tight">
+              ¿Desea ser parte de nuestro oasis educativo?
+            </h2>
+            <p class="mt-6 text-[18px] leading-8 text-[#90d6db] max-w-xl">
+              Estamos en búsqueda constante de universidades, institutos y corporaciones que compartan nuestra misión de democratizar la educación financiera y el éxito académico.
+            </p>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-1">
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-10 w-10 items-center justify-center rounded-3xl bg-white/10 text-white">
+                <CheckCircle class="w-5 h-5" />
+              </div>
+              <p class="text-[16px] leading-7 text-white">
+                Integración tecnológica API gratuita
+              </p>
+            </div>
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-10 w-10 items-center justify-center rounded-3xl bg-white/10 text-white">
+                <CheckCircle class="w-5 h-5" />
+              </div>
+              <p class="text-[16px] leading-7 text-white">
+                Soporte institucional 24/7
+              </p>
+            </div>
+            <div class="flex gap-3">
+              <div class="mt-1 flex h-10 w-10 items-center justify-center rounded-3xl bg-white/10 text-white">
+                <CheckCircle class="w-5 h-5" />
+              </div>
+              <p class="text-[16px] leading-7 text-white">
+                Programas de Co-Branding
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-[40px] bg-white p-8 shadow-[0_30px_60px_rgba(0,0,0,0.14)]">
+          <form class="space-y-6">
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-700">Nombre de la institución</label>
+              <input type="text" placeholder="Ej. Universidad de Oriente" class="w-full rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-900 outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20" />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-700">Tipo de alianza</label>
+              <select class="w-full rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-900 outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20">
+                <option>Educativa</option>
+                <option>Corporativa</option>
+                <option>Institucional</option>
+              </select>
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-700">Correo institucional</label>
+              <input type="email" placeholder="alianzas@institucion.edu" class="w-full rounded-3xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-900 outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20" />
+            </div>
+            <div class="space-y-2">
+              <label class="block text-sm font-semibold text-slate-700">Mensaje / propuesta</label>
+              <textarea rows="4" placeholder="Cuéntenos sobre su interés en colaborar..." class="w-full rounded-[28px] border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-900 outline-none transition focus:border-brand-primary focus:ring-2 focus:ring-brand-primary/20"></textarea>
+            </div>
+            <button type="submit" class="w-full rounded-full bg-brand-primary px-6 py-4 text-sm font-semibold text-white shadow-lg transition-colors duration-200 hover:bg-brand-secondary">
+              Solicitar Información de Convenio
+            </button>
+          </form>
         </div>
       </div>
     </div>
