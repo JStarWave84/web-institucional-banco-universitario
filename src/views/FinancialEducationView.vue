@@ -1,5 +1,5 @@
 <script setup>
-import { CirclePlay, TrendingUp, CreditCard, PiggyBank, GraduationCap } from '@lucide/vue'
+import { CirclePlay, TrendingUp, CreditCard, PiggyBank, GraduationCap, Quote } from '@lucide/vue'
 </script>
 
 <template>
@@ -142,5 +142,45 @@ import { CirclePlay, TrendingUp, CreditCard, PiggyBank, GraduationCap } from '@l
   </section>
 
   <!--(Sección 3) Historias de Éxito-->
-  <section class="px-6 py-24 bg-brand-bg"></section>
+  <section class="px-6 py-24 bg-brand-bg">
+    <div class="container mx-auto px-6 text-center mb-16">
+      <h2 class="text-brand-primary font-extrabold text-[36px]">Historias de Éxito</h2>
+    </div>
+
+    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="bg-white p-10 rounded-4xl shadow-sm relative">
+        <Quote class="text-teal-100 absolute top-6 right-8" :size="60" />
+        <p class="text-lg italic text-page-text mb-8 relative z-10">
+          "Gracias al taller de inversión de Banco Universitario, pude empezar mi propio portafolio
+          con mis ahorros de la beca. Ahora entiendo que el tiempo es mi mejor aliado."
+        </p>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden">
+            <img src="https://ui-avatars.com/api/?name=Andrea+Martinez" alt="Andrea Martínez" />
+          </div>
+          <div>
+            <h4 class="font-bold text-brand-primary">Andrea Martínez</h4>
+            <p class="text-sm text-page-text">Estudiante de Economía</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-10 rounded-4xl shadow-sm relative">
+        <Quote class="text-teal-100 absolute top-6 right-8" :size="60" />
+        <p class="text-lg italic text-page-text mb-8 relative z-10">
+          "La charla sobre crédito me salvó de tomar malas decisiones financieras. Ahora tengo una
+          tarjeta de crédito universitaria que uso para construir mi futuro, no para deudas."
+        </p>
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden">
+            <img src="https://ui-avatars.com/api/?name=Carlos+Ruiz" alt="Carlos Ruiz" />
+          </div>
+          <div>
+            <h4 class="font-bold text-brand-primary">Carlos Ruiz</h4>
+            <p class="text-sm text-page-text">Estudiante de Ingeniería</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
