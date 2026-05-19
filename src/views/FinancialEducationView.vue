@@ -181,6 +181,43 @@ import { CirclePlay, TrendingUp, CreditCard, PiggyBank, GraduationCap, Quote } f
           </div>
         </div>
       </div>
+      <div
+        class="md:col-span-3 bg-brand-primary p-10 rounded-[40px] text-white flex flex-col lg:flex-row items-center justify-between gap-8"
+      >
+        <div class="max-w-xl text-left w-full">
+          <h2 class="text-2xl font-bold mb-2 text-white">Recursos Gratuitos</h2>
+          <p class="text-teal-50/90">
+            Hemos preparado plantillas, guías y hojas de cálculo para que tomes el control hoy
+            mismo.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-4 w-full lg:w-auto">
+          <a
+            href="#"
+            class="flex items-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-4 rounded-2xl transition-all border border-white/20 text-white group"
+          >
+            <FileText class="text-white" />
+            <div class="text-left">
+              <p class="text-xs font-bold uppercase text-teal-200 group-hover:text-white">
+                Descargar
+              </p>
+              <p class="font-semibold text-white">Planificador de Presupuesto</p>
+            </div>
+          </a>
+          <a
+            href="#"
+            class="flex items-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-4 rounded-2xl transition-all border border-white/20 text-white group"
+          >
+            <FileText class="text-white" />
+            <div class="text-left">
+              <p class="text-xs font-bold uppercase text-teal-200 group-hover:text-white">
+                Descargar
+              </p>
+              <p class="font-semibold text-white">Guía de Inversión 101</p>
+            </div>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 </template>
