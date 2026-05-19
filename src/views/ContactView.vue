@@ -54,7 +54,7 @@ import {
 
               <div class="flex w-80 h-11 gap-4">
                 <div class="flex items-center justify-center w-10 h-10 rounded-full bg-[#085F63]">
-                  <Phone class="w-4.5 h-4.5 text-[#85F5ED]" />
+                  <Phone class="w-5.5 h-5.5 text-[#85F5ED]" />
                 </div>
 
                 <div class="flex flex-col w-[152.63px] h-11">
@@ -73,7 +73,7 @@ import {
 
               <div class="flex w-80 h-11 gap-4">
                 <div class="flex items-center justify-center w-10 h-10 rounded-full bg-[#085F63]">
-                  <Mail class="w-5 h-4 text-[#85F5ED]" />
+                  <Mail class="w-5.5 h-5.5 text-[#85F5ED]" />
                 </div>
 
                 <div class="flex flex-col w-[277.92px] h-11">
@@ -169,15 +169,15 @@ import {
 
         <!--Form-->
         <div
-          class="w-full max-w-200 min-h-156 rounded-[32px] px-12 pt-12 pb-16 gap-8 rotate-0 opacity-100 col-start-1 col-span-8 row-start-1 bg-[#FFFFFF] shadow-[0px_20px_40px_-10px_#085F6314]"
+          class="w-full max-w-200 min-h-156 rounded-[32px] border border-gray-100/70 px-12 pt-12 pb-16 gap-8 col-start-1 col-span-8 row-start-1 shadow-[0px_20px_40px_-10px_#085F6314]"
         >
           <h2
-            class="w-full h-auto mb-8 rotate-0 opacity-100 font-['Plus_Jakarta_Sans'] font-bold text-[30px] leading-9 tracking-normal align-middle text-[#004649]"
+            class="w-full h-auto mb-8 font-['Plus_Jakarta_Sans'] font-bold text-[30px] leading-9 tracking-normal align-middle text-[#004649]"
           >
             Envíanos un mensaje
           </h2>
 
-          <form class="flex flex-col w-full max-w-176 gap-6 opacity-100">
+          <form class="flex flex-col w-full max-w-176 gap-6">
             <!--Box Name|Mail-->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="flex flex-col gap-2">
@@ -226,13 +226,13 @@ import {
               </label>
               <textarea
                 placeholder="¿Cómo podemos ayudarte hoy?"
-                class="w-full h-32 rounded-[32px] p-6 bg-[#F2F4F4] outline-none focus:ring-2 focus:ring-[#3F4949]/20 transition-all"
+                class="w-full h-32 rounded-[32px] p-6 bg-[#F2F4F4] outline-none focus:ring-2 focus:ring-[#3F4949]/20 transition-all resize-none"
               ></textarea>
             </div>
 
             <!--Send Message-->
             <button
-              class="flex items-center justify-center w-60.5 h-15 rounded-full gap-3 bg-linear-to-br from-[#004649] to-[#085F63] text-white hover:brightness-110"
+              class="flex items-center justify-center w-60.5 h-15 rounded-full gap-3 bg-linear-to-br from-[#004649] to-[#085F63] text-white hover:brightness-115"
             >
               <span class="font-['Manrope'] font-bold text-[18px]">Enviar Mensaje</span>
               <div class="flex items-center justify-center w-4.75 h-4">
@@ -284,7 +284,7 @@ import {
         <div class="flex items-center justify-center relative w-152 h-152">
           <img src="../assets/img/map-caracas.png" alt="Mapa de Caracas" class="w-152 h-152" />
 
-          <div class="absolute inset-0 mix-blend-multiply bg-[#0046491A]"></div>
+          <div class="absolute inset-0 rounded-tr-[32px] rounded-br-[32px] bg-[#0046491A]"></div>
 
           <div
             class="flex items-center justify-center absolute w-16 h-16 rounded-full bg-[#006A65]"
