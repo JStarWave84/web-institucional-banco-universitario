@@ -57,4 +57,10 @@ import {} from '@lucide/vue'
       </div>
     </div>
   </section>
+
+  <!--Programas de Formación-->
+  <section class="py-24 bg-brand-bg-secondary"></section>
+
+  <!--Historias de Éxito-->
+  <section class="px-6 py-24 bg-brand-bg"></section>
 </template>
