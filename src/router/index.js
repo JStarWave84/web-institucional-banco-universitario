@@ -17,6 +17,12 @@ const router = createRouter({
       path: '/sobre-nosotros',
       name: 'SobreNosotros',
       component: () => import('../views/SobreNosotrosView.vue'),
+      path: '/educacion-financiera',
+      name: 'FinancialEducation',
+      component: () => import('../views/FinancialEducationView.vue'),
+      path: '/contacto',
+      name: 'Contact',
+      component: () => import('../views/ContactView.vue'),
     },
   ],
 })
