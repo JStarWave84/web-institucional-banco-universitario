@@ -1,5 +1,13 @@
 <script setup>
-import { CirclePlay, TrendingUp, CreditCard, PiggyBank, GraduationCap, Quote } from '@lucide/vue'
+import {
+  CirclePlay,
+  TrendingUp,
+  CreditCard,
+  PiggyBank,
+  GraduationCap,
+  FileSpreadsheet,
+  BookType,
+} from '@lucide/vue'
 </script>
 
 <template>
@@ -11,9 +19,9 @@ import { CirclePlay, TrendingUp, CreditCard, PiggyBank, GraduationCap, Quote } f
           class="text-brand-primary bg-teal-300/30 px-4 py-2 uppercase text-[14px] font-bold rounded-4xl w-max"
           >Oasis Académico</span
         >
-        <h1 class="font-extrabold text-[42px] md:text-[72px] leading-11 md:leading-18">
+        <h1 class="font-extrabold text-[42px] md:text-[72px] leading-[1.1] md:leading-18">
           Tu futuro <br />
-          <span class="text-[#00928b]">Financieramente</span> <br />
+          <span class="text-[#00928b] font-normal italic">Financieramente</span> <br />
           Brillante.
         </h1>
 
@@ -143,77 +151,110 @@ import { CirclePlay, TrendingUp, CreditCard, PiggyBank, GraduationCap, Quote } f
 
   <!--(Sección 3) Historias de Éxito-->
   <section class="px-6 py-24 bg-brand-bg">
-    <div class="container mx-auto px-6 text-center mb-16">
+    <div class="max-w-7xl mx-auto text-center mb-16">
       <h2 class="text-brand-primary font-extrabold text-[36px]">Historias de Éxito</h2>
     </div>
 
-    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-      <div class="bg-white p-10 rounded-4xl shadow-sm relative">
-        <Quote class="text-teal-100 absolute top-6 right-8" :size="60" />
-        <p class="text-lg italic text-page-text mb-8 relative z-10">
-          "Gracias al taller de inversión de Banco Universitario, pude empezar mi propio portafolio
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <div class="bg-white p-10 rounded-4xl shadow-sm relative overflow-hidden">
+        <span
+          class="absolute -top-2.5 left-8 text-[#85F5ED] opacity-50 font-['Liberation_Serif'] text-[96px] leading-none select-none"
+        >
+          “
+        </span>
+
+        <p class="text-[18px] leading-relaxed text-page-text mb-8 relative z-10 pt-8">
+          "Gracias al taller de inversión del Banco Universitario, pude empezar mi propio portafolio
           con mis ahorros de la beca. Ahora entiendo que el tiempo es mi mejor aliado."
         </p>
+
         <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden">
-            <img src="https://ui-avatars.com/api/?name=Andrea+Martinez" alt="Andrea Martínez" />
+          <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-bg">
+            <img
+              src="@/assets/img/andrea.jpg"
+              alt="Andrea Martínez"
+              class="w-full h-full object-cover"
+            />
           </div>
           <div>
-            <h4 class="font-bold text-brand-primary">Andrea Martínez</h4>
+            <h4 class="font-bold text-brand-primary text-[16px]">Andrea Martínez</h4>
             <p class="text-sm text-page-text">Estudiante de Economía</p>
           </div>
         </div>
       </div>
 
-      <div class="bg-white p-10 rounded-4xl shadow-sm relative">
-        <Quote class="text-teal-100 absolute top-6 right-8" :size="60" />
-        <p class="text-lg italic text-page-text mb-8 relative z-10">
+      <div class="bg-white p-10 rounded-4xl shadow-sm relative overflow-hidden">
+        <span
+          class="absolute -top-2.5 left-8 text-[#85F5ED] opacity-50 font-['Liberation_Serif'] text-[96px] leading-none select-none"
+        >
+          “
+        </span>
+
+        <p class="text-[18px] leading-relaxed text-page-text mb-8 relative z-10 pt-8">
           "La charla sobre crédito me salvó de tomar malas decisiones financieras. Ahora tengo una
           tarjeta de crédito universitaria que uso para construir mi futuro, no para deudas."
         </p>
+
         <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden">
-            <img src="https://ui-avatars.com/api/?name=Carlos+Ruiz" alt="Carlos Ruiz" />
+          <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-brand-bg">
+            <img
+              src="@/assets/img/carlos.jpg"
+              alt="Carlos Ruiz"
+              class="w-full h-full object-cover"
+            />
           </div>
           <div>
-            <h4 class="font-bold text-brand-primary">Carlos Ruiz</h4>
+            <h4 class="font-bold text-brand-primary text-[16px]">Carlos Ruiz</h4>
             <p class="text-sm text-page-text">Estudiante de Ingeniería</p>
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto">
       <div
-        class="md:col-span-3 bg-brand-primary p-10 rounded-[40px] text-white flex flex-col lg:flex-row items-center justify-between gap-8"
+        class="bg-brand-primary p-10 rounded-[48px] text-white flex flex-col lg:flex-row items-center justify-between gap-8"
       >
         <div class="max-w-xl text-left w-full">
-          <h2 class="text-2xl font-bold mb-2 text-white">Recursos Gratuitos</h2>
-          <p class="text-teal-50/90">
+          <h2 class="text-[32px] font-bold mb-2 text-white">Recursos Gratuitos</h2>
+          <p class="text-teal-50/80 text-[18px]">
             Hemos preparado plantillas, guías y hojas de cálculo para que tomes el control hoy
             mismo.
           </p>
         </div>
-        <div class="flex flex-wrap gap-4 w-full lg:w-auto">
+
+        <div class="flex flex-col sm:flex-row gap-6 w-full lg:w-auto">
           <a
             href="#"
-            class="flex items-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-4 rounded-2xl transition-all border border-white/20 text-white group"
+            class="flex items-center gap-4 bg-white/10 hover:bg-white/15 px-8 py-4 rounded-full transition-all text-white min-w-68.75 group"
           >
-            <FileText class="text-white" />
+            <FileSpreadsheet class="w-5 h-5 text-[#85F5ED] shrink-0" />
             <div class="text-left">
-              <p class="text-xs font-bold uppercase text-teal-200 group-hover:text-white">
-                Descargar
+              <p
+                class="font-bold text-[13px] leading-tight group-hover:text-[#85F5ED] transition-colors"
+              >
+                Planificador de Presupuesto
               </p>
-              <p class="font-semibold text-white">Planificador de Presupuesto</p>
+              <p class="text-[10px] opacity-50 font-medium uppercase tracking-wider mt-0.5">
+                XLSX • 1.2 MB
+              </p>
             </div>
           </a>
+
           <a
             href="#"
-            class="flex items-center gap-3 bg-white/10 hover:bg-white/20 px-6 py-4 rounded-2xl transition-all border border-white/20 text-white group"
+            class="flex items-center gap-4 bg-white/10 hover:bg-white/15 px-8 py-4 rounded-full transition-all text-white min-w-68.75 group"
           >
-            <FileText class="text-white" />
+            <BookType class="w-5 h-5 text-[#85F5ED] shrink-0" />
             <div class="text-left">
-              <p class="text-xs font-bold uppercase text-teal-200 group-hover:text-white">
-                Descargar
+              <p
+                class="font-bold text-[13px] leading-tight group-hover:text-[#85F5ED] transition-colors"
+              >
+                Guía de Inversión 101
               </p>
-              <p class="font-semibold text-white">Guía de Inversión 101</p>
+              <p class="text-[10px] opacity-50 font-medium uppercase tracking-wider mt-0.5">
+                PDF • 4.5 MB
+              </p>
             </div>
           </a>
         </div>
