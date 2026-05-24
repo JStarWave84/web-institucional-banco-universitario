@@ -12,6 +12,9 @@ const router = createRouter({
       path: '/educacion-financiera',
       name: 'FinancialEducation',
       component: () => import('../views/FinancialEducationView.vue'),
+      path: '/contacto',
+      name: 'Contact',
+      component: () => import('../views/ContactView.vue'),
     },
   ],
 })
