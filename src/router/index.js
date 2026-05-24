@@ -9,6 +9,14 @@ const router = createRouter({
       component: () => import('../views/HomeView.vue'),
     },
     {
+      path: '/alianzas',
+      name: 'Alianzas',
+      component: () => import('../views/AlianzasView.vue'),
+    },
+    {
+      path: '/sobre-nosotros',
+      name: 'SobreNosotros',
+      component: () => import('../views/SobreNosotrosView.vue'),
       path: '/educacion-financiera',
       name: 'FinancialEducation',
       component: () => import('../views/FinancialEducationView.vue'),
