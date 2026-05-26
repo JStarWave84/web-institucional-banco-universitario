@@ -41,7 +41,7 @@ import {
       <section class="grid grid-cols-1 md:grid-cols-12 gap-8 w-full max-w-304 h-auto md:h-156">
         <!--Info Cards Columna-->
         <div
-          class="flex flex-col w-full md:w-[384px] h-auto md:h-156 pb-1.75 gap-6 md:col-start-9 md:col-span-4 row-start-1"
+          class="flex flex-col w-full md:w-[384px] h-auto md:h-156 pb-1.75 gap-6 col-span-1 md:col-start-9 md:col-span-4 md:row-start-1"
         >
           <!--Direct Contact-->
           <div class="w-full md:w-[384px] h-auto md:h-58 rounded-4xl p-8 bg-[#004649]">
@@ -139,7 +139,7 @@ import {
               </h3>
             </div>
 
-            <div>
+            <div class="flex flex-col items-center">
               <div
                 class="flex justify-between items-center w-full max-w-[320px] h-7.25 pb-2 border-b border-b-[#006F6A1A]"
               >
@@ -175,7 +175,7 @@ import {
 
         <!--Form-->
         <div
-          class="bg-white w-full max-w-full md:max-w-200 min-h-auto md:min-h-156 rounded-4xl border border-gray-100/70 px-6 md:px-12 pt-12 pb-16 gap-8 col-start-1 col-span-12 md:col-span-8 row-start-1 shadow-[0px_20px_40px_-10px_#085F6314]"
+          class="bg-white w-full max-w-full md:max-w-200 min-h-auto md:min-h-156 rounded-4xl border border-gray-100/70 px-6 md:px-12 pt-12 pb-16 gap-8 col-span-1 md:col-start-1 md:col-span-8 md:row-start-1 shadow-[0px_20px_40px_-10px_#085F6314]"
         >
           <h2
             class="w-full h-auto mb-8 font-['Plus_Jakarta_Sans'] font-bold text-[30px] leading-9 tracking-normal align-middle text-[#004649]"
@@ -286,7 +286,9 @@ import {
             class="w-full md:w-152 h-auto md:h-152"
           />
 
-          <div class="absolute inset-0 rounded-tr-[32px] rounded-br-[32px] bg-[#0046491A]"></div>
+          <div
+            class="absolute inset-0 bg-[#0046491A] rounded-bl-[32px] rounded-br-[32px] md:rounded-bl-none rounded-tr-[32px]"
+          ></div>
 
           <div
             class="flex items-center justify-center absolute w-16 h-16 rounded-full bg-[#006A65]"
