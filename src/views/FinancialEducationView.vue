@@ -4,7 +4,7 @@ import {
   TrendingUp,
   CreditCard,
   PiggyBank,
-  GraduationCap,
+  Award,
   FileSpreadsheet,
   BookType,
 } from '@lucide/vue'
@@ -78,32 +78,40 @@ import {
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div
-          class="md:col-span-2 bg-gray-50 p-10 rounded-[40px] flex flex-col justify-between relative overflow-hidden group"
-        >
-          <div class="relative z-10">
-            <div class="bg-white p-3 rounded-2xl w-max mb-6 shadow-sm">
-              <TrendingUp class="text-brand-primary" />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Programa Principal -->
+        <div class="md:col-span-2 bg-gray-50 rounded-[40px] grid grid-cols-2 p-8 overflow-hidden">
+          <div class="flex flex-col justify-between">
+            <div class="flex flex-col gap-4">
+              <TrendingUp :size="30" class="text-brand-primary" />
+              <h3 class="text-[30px] leading-9">Inversión para Principiantes</h3>
+              <p class="text-[16px] text-page-text leading-6.5">
+                Aprende a hacer que tu dinero trabaje por ti. Analizamos fondos universitarios,
+                acciones, y diversificación de bajo riesgo.
+              </p>
             </div>
-            <h3 class="text-2xl font-bold text-brand-primary mb-4">Inversión para Principiantes</h3>
-            <p class="text-page-text max-w-sm mb-6">
-              Aprende a hacer que tu dinero trabaje para ti. Analizaremos fondos mutuales, acciones
-              y diversificación de bajo riesgo.
-            </p>
-            <span class="text-sm font-bold text-teal-600 bg-teal-100 px-4 py-2 rounded-full"
-              >Próximo inicio: 15 de Octubre</span
-            >
+
+            <div class="flex items-center gap-8">
+              <span
+                class="rounded-full px-3 py-2 uppercase bg-teal-300/30 text-brand-primary text-[12px] font-bold leading-4"
+                >Taller Práctico</span
+              >
+              <p class="text-[14px] font-bold leading-5 text-brand-primary">
+                Próximo: 15 de Octubre
+              </p>
+            </div>
           </div>
-          <div
-            class="absolute right-0 bottom-0 opacity-20 group-hover:opacity-40 transition-opacity"
-          >
-            <TrendingUp :size="200" />
+          <div class="relative -mr-8 -mt-8 -mb-8 overflow-hidden hidden md:block rounded-r-[40px]">
+            <img
+              src="../assets/img/laptop.jpg"
+              alt="Laptop"
+              class="absolute inset-0 w-full h-full object-cover"
+            />
           </div>
         </div>
 
         <div class="bg-brand-primary p-10 rounded-[40px] text-white flex flex-col justify-between">
-          <CreditCard :size="40" class="mb-6 text-white" />
+          <CreditCard :size="40" class="mb-6 text-teal-200" />
           <div>
             <h3 class="text-2xl font-bold mb-4 text-white">Crédito Responsable</h3>
             <p class="text-teal-50/90 mb-8">
@@ -118,24 +126,24 @@ import {
           </div>
         </div>
 
-        <div class="bg-teal-50 p-10 rounded-[40px]">
+        <div class="bg-white p-10 rounded-[40px]">
           <PiggyBank class="text-brand-primary mb-4" :size="32" />
           <h3 class="text-xl font-bold text-brand-primary mb-2">Ahorro Inteligente</h3>
           <p class="text-page-text text-sm mb-6">
-            Técnicas de presupuesto para optimizar tus ingresos en menor tiempo.
+            Técnicas de presupuesto para optimizar tu beca o ingresos de medio tiempo.
           </p>
           <a href="#" class="text-brand-primary font-bold text-sm underline">Ver detalles</a>
         </div>
 
         <div
-          class="md:col-span-2 bg-[#E0F7F6] p-10 rounded-[40px] flex items-center justify-between"
+          class="md:col-span-2 bg-linear-to-br from-[#82F2EA] to-white p-10 rounded-[40px] flex items-center justify-between"
         >
           <div class="max-w-md">
             <h3 class="text-2xl font-bold text-brand-primary mb-2">
               Capacitaciones para Egresados
             </h3>
             <p class="text-page-text">
-              Preparación financiera para la transición al mundo laboral y planes de retiro joven.
+              Preparación financiera para la transición al mundo laboral y jubilación temprana.
             </p>
             <button
               class="mt-6 bg-white text-brand-primary px-6 py-2 rounded-full font-bold text-sm shadow-sm"
@@ -143,7 +151,9 @@ import {
               PRÓXIMAMENTE
             </button>
           </div>
-          <GraduationCap :size="80" class="text-teal-200 hidden sm:block" />
+          <div class="rounded-full p-8 bg-white/30 border border-white/50">
+            <Award :size="60" class="text-brand-primary hidden sm:block" />
+          </div>
         </div>
       </div>
     </div>
@@ -155,15 +165,15 @@ import {
       <h2 class="text-brand-primary font-extrabold text-[36px]">Historias de Éxito</h2>
     </div>
 
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-      <div class="bg-white p-10 rounded-4xl shadow-sm relative overflow-hidden">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+      <div class="bg-white p-12 rounded-4xl shadow-lg relative flex flex-col gap-8">
         <span
-          class="absolute -top-2.5 left-8 text-[#85F5ED] opacity-50 font-['Liberation_Serif'] text-[96px] leading-none select-none"
+          class="absolute -top-6 left-12 text-[#85F5ED] opacity-50 font-['Liberation_Serif'] text-[96px] leading-none select-none"
         >
           “
         </span>
 
-        <p class="text-[18px] leading-relaxed text-page-text mb-8 relative z-10 pt-8">
+        <p class="text-[18px] leading-relaxed text-page-text">
           "Gracias al taller de inversión del Banco Universitario, pude empezar mi propio portafolio
           con mis ahorros de la beca. Ahora entiendo que el tiempo es mi mejor aliado."
         </p>
@@ -183,14 +193,14 @@ import {
         </div>
       </div>
 
-      <div class="bg-white p-10 rounded-4xl shadow-sm relative overflow-hidden">
+      <div class="bg-white p-10 rounded-4xl shadow-lg relative flex flex-col gap-8">
         <span
-          class="absolute -top-2.5 left-8 text-[#85F5ED] opacity-50 font-['Liberation_Serif'] text-[96px] leading-none select-none"
+          class="absolute -top-6 left-12 text-[#85F5ED] opacity-50 font-['Liberation_Serif'] text-[96px] leading-none select-none"
         >
           “
         </span>
 
-        <p class="text-[18px] leading-relaxed text-page-text mb-8 relative z-10 pt-8">
+        <p class="text-[18px] leading-relaxed text-page-text">
           "La charla sobre crédito me salvó de tomar malas decisiones financieras. Ahora tengo una
           tarjeta de crédito universitaria que uso para construir mi futuro, no para deudas."
         </p>
