@@ -1,197 +1,195 @@
 <script setup>
 import {
-  ArrowRight,
-  Eye,
   Flag,
-  Layers,
-  ShieldCheck,
-  BookOpen,
-  Users,
-  CheckCircle,
+  Rocket,
+  Eye,
+  CircleGauge,
+  MonitorSmartphone,
+  BookOpenText,
+  HeartHandshake,
+  Lightbulb,
 } from '@lucide/vue'
+
+const objetives = [
+  {
+    icon: CircleGauge,
+    title: 'Gestión Eficiente',
+    description:
+      'Brindar a los estudiantes universitarios un servicio eficiente y de calidad en la gestión de sus recursos financieros, a través de nuestros canales digitales y nuestros puntos de atención presencial.',
+  },
+  {
+    icon: MonitorSmartphone,
+    title: 'Plataformas Digitales',
+    description:
+      'Fomentar el uso de nuestras plataformas digitales para hacer transferencias entre estudiantes sin comisión, depósitos y retiros en efectivo, ofreciendo herramientas tecnológicas fáciles y seguras.',
+  },
+  {
+    icon: BookOpenText,
+    title: 'Educación Financiera',
+    description:
+      'Promover la educación financiera de los estudiantes universitarios, a través de charlas, talleres y capacitaciones sobre temas como el ahorro, la inversión y el uso responsable del crédito.',
+  },
+  {
+    icon: HeartHandshake,
+    title: 'Alianzas Estratégicas',
+    description:
+      'Establecer alianzas estratégicas con universidades y empresas para ofrecer beneficios exclusivos a nuestros clientes, tales como descuentos en matrículas, becas, prácticas laborales, entre otros.',
+  },
+  {
+    icon: Lightbulb,
+    title: 'Innovación Continua',
+    description:
+      'Mantener una cultura de innovación y mejora continua en nuestros procesos, productos y servicios, para estar siempre a la vanguardia de las necesidades de nuestros clientes y del mercado.',
+  },
+]
 </script>
 
 <template>
-  <section class="bg-brand-bg py-24">
-    <div class="mx-auto max-w-[1220px] px-6">
-      <div class="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] items-center">
-        <div class="space-y-7">
+  <section class="bg-brand-bg grid grid-cols-12 gap-12 pt-20 pb-32 overflow-x-hidden px-6">
+    <div class="col-span-7 flex flex-col gap-[30.8px]">
+      <span
+        class="text-brand-primary bg-teal-300/30 px-4 py-2 uppercase text-[14px] font-bold rounded-4xl w-max"
+        >Espacio Académico</span
+      >
+      <h1 class="font-extrabold text-[42px] md:text-[56px] leading-[1.1] md:leading-18">
+        Cultivando tu
+        <span class="text-[#00928b] font-extrabold italic">Futuro</span> <br />
+        Financiero.
+      </h1>
+
+      <p class="text-page-text text-[18px] leading-[29.3px] max-w-xl">
+        Somos la institución diseñada por y para la comunidad universitaria, transformando la banca
+        tradicional en un oasis de crecimiento académico y económico.
+      </p>
+    </div>
+
+    <div class="col-span-5 relative">
+      <!-- Overlay card (pequeña etiqueta) -->
+      <div
+        class="absolute left-26 bottom-5 bg-brand-primary/80 rounded-4xl backdrop-blur-md p-8 max-w-[220.45px] flex flex-col gap-2 z-10"
+      >
+        <span class="text-white font-bold text-[36px] leading-10">+50k</span>
+        <span class="text-white text-[14px] leading-[17.5px]"
+          >Estudiantes confían en nuestra visión de futuro</span
+        >
+      </div>
+      <div
+        class="w-[485.34px] h-[485.34px] rotate-45 transform translate-x-32 overflow-hidden rounded-tl-full rounded-tr-full rounded-bl-full shadow-lg"
+      >
+        <img
+          src="../assets/img/about-us-hero-image.jpg"
+          class="w-full h-full object-cover transform -rotate-45 scale-[1.4142]"
+          alt="Edificios universitarios"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand-bg-secondary flex flex-col px-6 py-24">
+    <div class="grid grid-cols-12 gap-8">
+      <div
+        class="bg-white col-span-12 md:col-span-7 flex flex-col px-12 pt-12 pb-[77.25px] rounded-4xl shadow-lg relative overflow-hidden group"
+      >
+        <div class="flex flex-col gap-[23.2px]">
+          <Flag class="w-7.5 h-7.5 text-brand-primary" />
+          <h2 class="pt-[0.8px] font-bold text-[30px] leading-9">Nuestra Misión</h2>
+          <p class="text-page-text text-[18px] leading-[29.3px]">
+            Empoderar a la comunidad universitaria mediante soluciones financieras innovadoras,
+            accesibles y educativas que fomenten la autonomía económica y el éxito académico de los
+            futuros profesionales de la nación.
+          </p>
+        </div>
+        <Rocket
+          class="absolute -right-6 -bottom-6 w-41.75 h-41.75 text-brand-bg-secondary group-hover:translate-x-2 group-hover:-translate-y-2 transition duration-300 group-hover:text-brand-secondary"
+        />
+      </div>
+
+      <div
+        class="bg-brand-primary col-span-12 md:col-span-5 flex flex-col gap-[23.4px] px-12 py-12 rounded-4xl shadow-lg hover:bg-brand-secondary transition-colors duration-300 group"
+      >
+        <Eye class="w-7.5 h-7.5 text-brand-secondary group-hover:text-brand-primary duration-300" />
+        <h2 class="pt-[0.8px] text-white font-bold text-[30px] leading-9">Nuestra Visión</h2>
+        <p class="text-white text-[18px] leading-[29.3px]">
+          Ser el referente global de banca académica, integrando tecnología de vanguardia con un
+          enfoque humano que inspire a cada estudiante a alcanzar sus metas más allá del aula.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand-bg px-6 py-24">
+    <div class="flex flex-col gap-16">
+      <div class="flex flex-col gap-4">
+        <h2 class="font-extrabold text-brand-primary text-[36px] leading-10">
+          Objetivos Estratégicos
+        </h2>
+        <span class="block w-24 h-1.5 bg-brand-primary rounded-4xl"></span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div
+          class="col-span-1 rounded-4xl bg-brand-bg-secondary border border-[#BEC8C9]/30 shadow-lg p-8.25 group hover:bg-brand-primary transition duration-300"
+          v-for="objetive in objetives"
+          :key="objetive.title"
+        >
           <span
-            class="inline-flex items-center gap-2 rounded-full bg-[#d4f0ec] px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.3em] text-brand-primary"
+            class="flex items-center justify-center w-14 h-14 bg-brand-primary/10 rounded-full mb-6 group-hover:bg-white transition duration-300"
           >
-            Espacio Académico
+            <component :is="objetive.icon" class="w-6.25 h-6.25 text-brand-primary" />
           </span>
 
-          <h1 class="text-[40px] md:text-[56px] leading-[1.03] font-extrabold text-[#08363a]">
-            Cultivando tu futuro financiero.
-          </h1>
-
-          <p class="max-w-2xl text-[18px] leading-9 text-page-text">
-            Somos la institución diseñada para y por la comunidad universitaria, transformando la banca
-            tradicional en un oasis de crecimiento académico y económico.
-          </p>
-
-          <div class="mt-8 w-full max-w-xl"></div>
-        </div>
-
-        <div class="relative">
-          <div class="overflow-hidden rounded-[48px] bg-white shadow-[0_40px_120px_rgba(2,41,36,0.12)]">
-            <img
-              src="../assets/img/estudiantes-uni.jpg"
-              alt="Grupo de estudiantes universitarios"
-              class="w-full h-[560px] object-cover"
-            />
-          </div>
-          <div
-            class="absolute left-6 top-6 rounded-[32px] bg-white/85 p-6 shadow-[0_30px_80px_rgba(2,41,36,0.12)] backdrop-blur-xl border border-white/70 max-w-[220px]"
+          <h3
+            class="font-bold text-[20px] leading-7 group-hover:text-white transition duration-300"
           >
-            <p class="text-[24px] font-extrabold text-[#08363a]">+50k</p>
-            <p class="mt-2 text-[13px] leading-5 text-[#08363a]/80">
-              Estudiantes confían en nuestras vías de futuro.
-            </p>
-          </div>
+            {{ objetive.title }}
+          </h3>
+          <!-- al hacer hover aparece el texto-->
           <div
-            class="absolute -right-10 top-10 hidden h-32 w-32 rounded-full border border-white bg-white/80 shadow-[0_20px_60px_rgba(2,41,36,0.1)] lg:block"
-          ></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-[#f7faf9] py-24">
-    <div class="mx-auto max-w-[1220px] px-6">
-      <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-        <div class="rounded-[32px] border border-[#d8efea] bg-white p-10 shadow-[0_20px_60px_rgba(2,41,36,0.08)]">
-          <div class="flex items-center gap-3 text-brand-primary mb-6">
-            <Flag class="w-5 h-5" />
-            <span class="text-[12px] font-semibold uppercase tracking-[0.26em]">Nuestra Misión</span>
-          </div>
-          <p class="text-page-text text-[16px] leading-8">
-            Empoderar a la comunidad universitaria mediante soluciones financieras innovadoras, accesibles y
-            educativas que fomenten la autonomía económica y el éxito académico de los futuros profesionales.
-          </p>
-        </div>
-
-        <div class="rounded-[32px] bg-brand-primary p-10 text-white shadow-[0_20px_60px_rgba(2,41,36,0.12)]">
-          <div class="flex items-center gap-3 mb-6">
-            <Eye class="w-5 h-5" />
-            <span class="text-[12px] font-semibold uppercase tracking-[0.26em]">Nuestra Visión</span>
-          </div>
-          <p class="text-[16px] leading-8">
-            Ser el referente global de banca académica, integrando tecnología de vanguardia con un enfoque humano
-            que inspire a cada estudiante a alcanzar sus metas más allá del aula.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-brand-bg py-24">
-    <div class="mx-auto max-w-[1220px] px-6">
-      <div class="mb-10 max-w-2xl">
-        <h2 class="text-[28px] md:text-[36px] font-extrabold text-[#08363a]">Objetivos Estratégicos</h2>
-      </div>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <div class="rounded-[32px] border border-[#d8efea] bg-white p-6 shadow-[0_20px_60px_rgba(2,41,36,0.06)]">
-          <div class="flex items-center gap-3 text-brand-primary mb-4">
-            <Layers class="w-5 h-5" />
-            <span class="font-semibold">Gestión Eficiente</span>
-          </div>
-          <p class="text-page-text text-sm leading-6">
-            Optimizar procesos internos para brindar servicios más rápidos y confiables.
-          </p>
-        </div>
-
-        <div class="rounded-[32px] border border-[#d8efea] bg-white p-6 shadow-[0_20px_60px_rgba(2,41,36,0.06)]">
-          <div class="flex items-center gap-3 text-brand-primary mb-4">
-            <ArrowRight class="w-5 h-5" />
-            <span class="font-semibold">Plataformas Digitales</span>
-          </div>
-          <p class="text-page-text text-sm leading-6">
-            Desarrollar herramientas digitales que faciliten la vida financiera universitaria.
-          </p>
-        </div>
-
-        <div class="rounded-[32px] border border-[#d8efea] bg-white p-6 shadow-[0_20px_60px_rgba(2,41,36,0.06)]">
-          <div class="flex items-center gap-3 text-brand-primary mb-4">
-            <BookOpen class="w-5 h-5" />
-            <span class="font-semibold">Educación Financiera</span>
-          </div>
-          <p class="text-page-text text-sm leading-6">
-            Ofrecer contenido y talleres para fortalecer habilidades de ahorro e inversión.
-          </p>
-        </div>
-
-        <div class="rounded-[32px] border border-[#d8efea] bg-white p-6 shadow-[0_20px_60px_rgba(2,41,36,0.06)]">
-          <div class="flex items-center gap-3 text-brand-primary mb-4">
-            <ShieldCheck class="w-5 h-5" />
-            <span class="font-semibold">Alianzas Estratégicas</span>
-          </div>
-          <p class="text-page-text text-sm leading-6">
-            Construir colaboraciones con universidades y programas académicos clave.
-          </p>
-        </div>
-
-        <div class="rounded-[32px] border border-[#d8efea] bg-white p-6 shadow-[0_20px_60px_rgba(2,41,36,0.06)]">
-          <div class="flex items-center gap-3 text-brand-primary mb-4">
-            <Users class="w-5 h-5" />
-            <span class="font-semibold">Innovación Continua</span>
-          </div>
-          <p class="text-page-text text-sm leading-6">
-            Adaptar servicios con nuevas soluciones para la comunidad estudiantil.
-          </p>
-        </div>
-
-        <div class="rounded-[32px] border border-[#d8efea] bg-white p-6 shadow-[0_20px_60px_rgba(2,41,36,0.06)]">
-          <div class="flex items-center gap-3 text-brand-primary mb-4">
-            <CheckCircle class="w-5 h-5" />
-            <span class="font-semibold">Experiencia Continua</span>
-          </div>
-          <p class="text-page-text text-sm leading-6">
-            Mantener altos estándares de servicio que fidelicen a nuestros clientes.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-brand-bg-secondary py-24">
-    <div class="mx-auto max-w-[1220px] px-6">
-      <div class="overflow-hidden rounded-[48px] bg-white p-8 shadow-[0_40px_120px_rgba(2,41,36,0.08)]">
-        <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] items-center">
-          <div class="space-y-8">
-            <h2 class="text-[32px] md:text-[44px] font-extrabold text-[#08363a]">
-              ¿Listo para empezar tu camino con nosotros?
-            </h2>
-            <p class="max-w-2xl text-page-text text-[18px] leading-8">
-              Descubre los beneficios académicos y financieros que Banco Universitario ofrece para
-              acompañar tu crecimiento desde el primer semestre.
+            class="pb-[0.88px] max-h-0 overflow-hidden opacity-0 invisible transition-all duration-300 group-hover:max-h-40 group-hover:opacity-100 group-hover:visible"
+          >
+            <p
+              class="text-page-text text-[14px] leading-[22.8px] group-hover:text-white transition duration-300"
+            >
+              {{ objetive.description }}
             </p>
-            <div class="flex flex-col gap-4 sm:flex-row">
-              <a
-                href="#"
-                class="inline-flex items-center justify-center rounded-full bg-brand-primary px-8 py-4 text-sm font-semibold text-white shadow-lg transition-colors duration-200 hover:bg-brand-secondary"
-              >
-                Abrir Cuenta Universitaria
-              </a>
-              <a
-                href="#"
-                class="inline-flex items-center justify-center rounded-full border border-brand-primary bg-white px-8 py-4 text-sm font-semibold text-brand-primary transition-colors duration-200 hover:bg-brand-primary hover:text-white"
-              >
-                Conoce Nuestras Alianzas
-              </a>
-            </div>
-          </div>
-
-          <div class="rounded-[32px] overflow-hidden shadow-[0_40px_80px_rgba(2,41,36,0.12)]">
-            <img
-              src="../assets/img/estudiantes-uni.jpg"
-              alt="Estudiantes colaborando en una mesa con laptops"
-              class="w-full h-full object-cover min-h-[340px]"
-            />
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section
+    class="bg-brand-bg-secondary flex items-center gap-12 px-10 md:px-20 py-20 mx-6 my-24 rounded-[48px]"
+  >
+    <div class="flex flex-col gap-8 max-w-full md:max-w-140">
+      <h2
+        class="font-extrabold text-brand-primary text-[26px] leading-10 md:text-[48px] md:leading-12"
+      >
+        ¿Listo para empezar tu camino con nosotros?
+      </h2>
+      <div class="flex flex-col gap-4 max-w-full md:max-w-67">
+        <a
+          href="#"
+          target="_blank"
+          class="bg-brand-primary text-white font-bold text-[16px] leading-6 text-center py-4 px-8 rounded-full shadow-lg hover:bg-brand-secondary transition-colors duration-300"
+        >
+          Abrir Cuenta Universitaria
+        </a>
+        <RouterLink
+          to="/alianzas"
+          class="bg-white text-brand-primary font-bold text-[16px] leading-6 text-center py-4 px-8 rounded-full shadow-lg hover:bg-brand-primary hover:text-white transition-colors duration-300"
+        >
+          Conoce Nuestras Alianzas
+        </RouterLink>
+      </div>
+    </div>
+
+    <div class="flex-1">
+      <img
+        src="../assets/img/about-us-cta.jpg"
+        class="object-cover rounded-[48px] shadow-lg"
+        alt="Estudiantes reunidos"
+      />
     </div>
   </section>
 </template>
