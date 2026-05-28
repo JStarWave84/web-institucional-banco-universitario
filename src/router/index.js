@@ -28,6 +28,16 @@ const router = createRouter({
       name: 'Contact',
       component: () => import('../views/ContactView.vue'),
     },
+    {
+      path: '/login',
+      name: 'Login',
+      component: () => import('../views/LoginView.vue'),
+    },
+    {
+      path: '/crear-cuenta',
+      name: 'CrearCuenta',
+      component: () => import('../views/CrearCuentaView.vue'),
+    },
   ],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
