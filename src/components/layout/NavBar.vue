@@ -73,23 +73,23 @@ const closeMenu = () => {
           >{{ link.name }}</router-link
         >
 
-        <a
-          href="https://bancaenlinea-bu.com"
+        <router-link
+          :to="{ name: 'Login' }"
           target="_blank"
           rel="noopener noreferrer"
           @click="closeMenu"
           class="bg-brand-primary text-white px-6 py-2.5 rounded-full hover:bg-brand-secondary transition-colors duration-300 w-full text-center"
-          >Banca en Línea</a
+          >Banca en Línea</router-link
         >
       </div>
     </Transition>
 
-    <a
-      href="https://bancaenlinea-bu.com"
+    <router-link
+      :to="{ name: 'Login' }"
       target="_blank"
       rel="noopener noreferrer"
       class="hidden lg:inline-block bg-brand-primary text-white px-6 py-2.5 rounded-full hover:bg-brand-secondary transition-colors duration-300"
-      >Banca en Línea</a
+      >Banca en Línea</router-link
     >
 
     <button

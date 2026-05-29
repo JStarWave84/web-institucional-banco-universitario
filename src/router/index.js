@@ -32,11 +32,13 @@ const router = createRouter({
       path: '/login',
       name: 'Login',
       component: () => import('../views/LoginView.vue'),
+      meta: { layout: 'auth' },
     },
     {
       path: '/crear-cuenta',
       name: 'CrearCuenta',
       component: () => import('../views/CrearCuentaView.vue'),
+      meta: { layout: 'auth' },
     },
   ],
   scrollBehavior(to, from, savedPosition) {
