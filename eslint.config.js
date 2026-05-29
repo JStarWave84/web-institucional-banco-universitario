@@ -30,6 +30,7 @@ export default defineConfig([
     rules: {
       'no-unused-vars': 'warn',
       'no-console': 'warn',
+      'vue/multi-word-component-names': 'off',
     },
   },
 

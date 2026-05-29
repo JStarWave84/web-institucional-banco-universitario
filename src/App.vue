@@ -1,11 +1,21 @@
-<script setup></script>
+<script setup>
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import DefaultLayout from './layouts/DefaultLayout.vue'
+import AuthLayout from './layouts/AuthLayout.vue'
+
+const route = useRoute()
+
+const layoutComponent = computed(() => {
+  const layout = route.meta.layout ?? 'default'
+  return layout === 'auth' ? AuthLayout : DefaultLayout
+})
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <component :is="layoutComponent">
+    <router-view />
+  </component>
 </template>
 
 <style scoped></style>
