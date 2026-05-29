@@ -1,12 +1,21 @@
 <script setup>
-import NavBar from './components/layout/NavBar.vue'
-import Footer from './components/layout/Footer.vue'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import DefaultLayout from './layouts/DefaultLayout.vue'
+import AuthLayout from './layouts/AuthLayout.vue'
+
+const route = useRoute()
+
+const layoutComponent = computed(() => {
+  const layout = route.meta.layout ?? 'default'
+  return layout === 'auth' ? AuthLayout : DefaultLayout
+})
 </script>
 
 <template>
-  <NavBar />
-  <router-view />
-  <Footer />
+  <component :is="layoutComponent">
+    <router-view />
+  </component>
 </template>
 
 <style scoped></style>
