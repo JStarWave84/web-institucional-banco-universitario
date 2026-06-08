@@ -12,7 +12,8 @@
   --color-brand-bg: #f7faf9;
   --color-brand-bg-secondary: #f2f4f4;
   --color-page-text: #3f4949;
-
+  --color-bank-gray: #f8fafc;
+  --color-bank-gray-dark: #191c1d;
   --font-brand: 'Montserrat Alternates', sans-serif;
   --font-text: 'Manrope', sans-serif;
 }

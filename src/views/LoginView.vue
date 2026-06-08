@@ -138,7 +138,9 @@ function submit(e) {
 
             <p class="text-center text-sm text-slate-500">
               ¿Eres nuevo en el campus?
-              <router-link to="/crear-cuenta" class="font-medium text-teal-700 hover:underline"
+              <router-link
+                to="/bancaenlinea/crear-cuenta"
+                class="font-medium text-teal-700 hover:underline"
                 >Crea tu cuenta</router-link
               >
             </p>

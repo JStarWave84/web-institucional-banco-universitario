@@ -206,7 +206,9 @@ import { Eye, Lock, Mail, Phone, User, CalendarDays, CreditCard, CheckCircle } f
 
               <p class="text-center text-xs text-slate-500 font-medium">
                 ¿Ya tienes cuenta?
-                <router-link to="/login" class="font-bold text-[#055151] hover:underline"
+                <router-link
+                  to="/bancaenlinea/login"
+                  class="font-bold text-[#055151] hover:underline"
                   >Inicia sesión aquí</router-link
                 >
               </p>
