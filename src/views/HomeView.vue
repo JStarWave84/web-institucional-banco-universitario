@@ -32,7 +32,7 @@ import {
 
         <div class="flex flex-col gap-4 pt-4 sm:flex-row sm:items-center">
           <router-link
-            to="/crear-cuenta"
+            to="/bancaenlinea/crear-cuenta"
             class="bg-brand-primary text-white font-bold leading-7 px-8 py-4 rounded-4xl shadow-lg hover:bg-brand-secondary transition-colors w-full sm:w-auto text-center"
           >
             Abre tu cuenta ahora

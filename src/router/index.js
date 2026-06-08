@@ -5,40 +5,60 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: () => import('../views/HomeView.vue'),
+      component: () => import('../layouts/DefaultLayout.vue'),
+      children: [
+        {
+          path: '',
+          name: 'Home',
+          component: () => import('../views/HomeView.vue'),
+        },
+        {
+          path: 'educacion-financiera',
+          name: 'FinancialEducation',
+          component: () => import('../views/FinancialEducationView.vue'),
+        },
+        {
+          path: 'alianzas',
+          name: 'Alianzas',
+          component: () => import('../views/AlianzasView.vue'),
+        },
+        {
+          path: 'sobre-nosotros',
+          name: 'SobreNosotros',
+          component: () => import('../views/SobreNosotrosView.vue'),
+        },
+        {
+          path: 'contacto',
+          name: 'Contact',
+          component: () => import('../views/ContactView.vue'),
+        },
+      ],
     },
     {
-      path: '/educacion-financiera',
-      name: 'FinancialEducation',
-      component: () => import('../views/FinancialEducationView.vue'),
-    },
-    {
-      path: '/alianzas',
-      name: 'Alianzas',
-      component: () => import('../views/AlianzasView.vue'),
-    },
-    {
-      path: '/sobre-nosotros',
-      name: 'SobreNosotros',
-      component: () => import('../views/SobreNosotrosView.vue'),
-    },
-    {
-      path: '/contacto',
-      name: 'Contact',
-      component: () => import('../views/ContactView.vue'),
-    },
-    {
-      path: '/login',
-      name: 'Login',
-      component: () => import('../views/LoginView.vue'),
-      meta: { layout: 'auth' },
-    },
-    {
-      path: '/crear-cuenta',
-      name: 'CrearCuenta',
-      component: () => import('../views/CrearCuentaView.vue'),
-      meta: { layout: 'auth' },
+      path: '/bancaenlinea',
+      children: [
+        {
+          path: 'login',
+          name: 'Login',
+          component: () => import('../views/LoginView.vue'),
+        },
+        {
+          path: 'crear-cuenta',
+          name: 'CrearCuenta',
+          component: () => import('../views/CrearCuentaView.vue'),
+        },
+        {
+          path: '',
+          component: () => import('../layouts/AuthLayout.vue'),
+          children: [
+            {
+              path: 'seguridad',
+              name: 'Seguridad',
+              component: () => import('../views/OnlineBanking/SecurityView.vue'),
+            },
+          ],
+        },
+      ],
     },
   ],
   scrollBehavior(to, from, savedPosition) {
