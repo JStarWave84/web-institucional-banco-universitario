@@ -61,6 +61,11 @@ const router = createRouter({
               name: 'Contactos_Banco',
               component: () => import('../views/OnlineBanking/Contact_BankViews.vue'),
             },
+            {
+              path: 'movimientos',
+              name: 'Movimientos',
+              component: () => import('../views/OnlineBanking/Movements.vue'),
+            },
           ],
         },
       ],
