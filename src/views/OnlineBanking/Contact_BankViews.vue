@@ -13,7 +13,7 @@ import { Plus, Search, LayoutGrid, ListFilter, ArrowRight, UserPlus, Pen, Trash 
         </p>
       </div>
 
-      <div class="flex justify-centerw-[211.88px] h-14 self-end">
+      <div class="flex justify-center h-14 self-end">
         <button
           class="flex rounded-full px-8 py-4 gap-4 bg-[linear-gradient(104.16deg,#004649_0%,#085F63_100%)] text-white shadow-[0px_4px_6px_-4px_#0000001A]"
         >
