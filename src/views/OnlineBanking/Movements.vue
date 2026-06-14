@@ -1,5 +1,5 @@
 <script setup>
-import { Download, Search } from '@lucide/vue'
+import { Download, Search, ArrowUpRight, ArrowDownLeft } from '@lucide/vue'
 </script>
 
 <template>
@@ -34,15 +34,61 @@ import { Download, Search } from '@lucide/vue'
     </section>
 
     <!--Transaction List-->
-    <ul class="w-244 h-136 gap-4">
+    <ul class="flex flex-col w-244 h-136 gap-4">
       <!--Data Transaction-->
-      <div class="flex w-244 h-4 px-2 gap-4">
-        <span class="w-[141.33px] text-[#6F7979] text-[12px] font-bold uppercase"
+      <div class="flex items-center w-244 h-4 px-2 gap-4">
+        <span class="w-[141.33px] text-[#6F7979] text-center text-[12px] font-bold uppercase"
           >hoy, 13 de junio
         </span>
 
-        <div></div>
+        <div class="w-[832.67px] h-px bg-[#E7E8E9]"></div>
       </div>
+
+      <!--Modelo para los diferentes movimientos-->
+
+      <!--Transaction Negative-->
+      <li class="flex justify-between w-244 h-20 p-4 rounded-xl shadow-sm bg-white">
+        <!--Info-->
+        <div class="flex w-[196.77px] h-12 gap-4">
+          <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-[#BA1A1A]/10">
+            <ArrowUpRight class="text-[#BA1A1A]" />
+          </div>
+
+          <div class="flex flex-col w-[132.77px] h-10.5 gap-0.5">
+            <span class="h-6 text-[#191C1D] font-bold">Consumo</span>
+            <span class="h-4 text-[#3F4949] text-[12px]">14:20 • Pago con tarjeta</span>
+          </div>
+        </div>
+
+        <!--Amouth-->
+        <div class="flex flex-col w-[91.31px] h-9.75 text-right">
+          <span class="text-[#BA1A1A] font-bold">-Bs. 45.20</span>
+          <span class="text-[#6F7979] text-[10px] font-bold">Saldo: Bs. 1,194.80</span>
+        </div>
+      </li>
+
+      <!--Transaction Positive-->
+      <li class="flex justify-between w-244 h-20 p-4 rounded-xl shadow-sm bg-white">
+        <!--Info-->
+        <div class="flex w-[196.77px] h-12 gap-4">
+          <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-[#006A65]/10">
+            <ArrowDownLeft class="text-[#006A65]" />
+          </div>
+
+          <div class="flex flex-col w-[132.77px] h-10.5 gap-0.5">
+            <span class="h-6 text-[#191C1D] font-bold whitespace-nowrap">Beca Universitario</span>
+            <span class="h-4 text-[#3F4949] text-[12px] whitespace-nowrap"
+              >11:00 • Transferencia recibida</span
+            >
+          </div>
+        </div>
+
+        <!--Amouth-->
+        <div class="flex flex-col w-[91.31px] h-9.75 text-right">
+          <span class="text-[#006A65] font-bold whitespace-nowrap">+Bs. 850.00</span>
+          <span class="text-[#6F7979] text-[10px] font-bold">Saldo: Bs. 1,240.00</span>
+        </div>
+      </li>
     </ul>
 
     <!--More results-->
