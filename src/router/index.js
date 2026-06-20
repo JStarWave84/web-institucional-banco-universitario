@@ -61,6 +61,16 @@ const router = createRouter({
               name: 'Seguridad',
               component: () => import('../views/OnlineBanking/SecurityView.vue'),
             },
+            {
+              path: 'contactos',
+              name: 'Contactos_Banco',
+              component: () => import('../views/OnlineBanking/Contact_BankViews.vue'),
+            },
+            {
+              path: 'movimientos',
+              name: 'Movimientos',
+              component: () => import('../views/OnlineBanking/Movements.vue'),
+            },
           ],
         },
       ],
