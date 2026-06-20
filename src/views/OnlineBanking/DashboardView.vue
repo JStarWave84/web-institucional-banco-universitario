@@ -1,4 +1,6 @@
 <script setup>
+import { ArrowUpRight, ArrowDownLeft, SlidersHorizontal } from '@lucide/vue'
+
 const balance = 'Bs. 12,450.00'
 const fechaActual = '12 de Abril 2025'
 
@@ -7,6 +9,45 @@ const contactosFrecuentes = [
   { id: 2, nombre: 'Sofia L.', avatar: '' },
   { id: 3, nombre: 'Lucas V.', avatar: '' },
   { id: 4, nombre: 'Elena R.', avatar: '' },
+]
+
+const actividadReciente = [
+  {
+    id: 1,
+    tipo: 'consumo',
+    titulo: 'Consumo',
+    detalles: 'Hoy, 10:45 AM • Almuerzo',
+    monto: '-Bs. 4.50',
+    esIngreso: false,
+    icono: ArrowUpRight,
+  },
+  {
+    id: 2,
+    tipo: 'ingreso',
+    titulo: 'Beca Universitaria',
+    detalles: 'Ayer • Depósito',
+    monto: '+Bs. 1,200.00',
+    esIngreso: true,
+    icono: ArrowDownLeft,
+  },
+  {
+    id: 3,
+    tipo: 'consumo',
+    titulo: 'Consumo',
+    detalles: '24 Oct • Materiales',
+    monto: '-Bs. 124.99',
+    esIngreso: false,
+    icono: ArrowUpRight,
+  },
+  {
+    id: 4,
+    tipo: 'consumo',
+    titulo: 'Consumo',
+    detalles: '22 Oct • Pago compartido',
+    monto: '-Bs. 25.00',
+    esIngreso: false,
+    icono: ArrowUpRight,
+  },
 ]
 </script>
 
@@ -92,6 +133,57 @@ const contactosFrecuentes = [
           </div>
           <span class="text-[12px] font-medium text-bank-gray-dark">{{ contacto.nombre }}</span>
         </div>
+      </div>
+    </div>
+
+    <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-50 flex flex-col gap-6">
+      <div class="flex justify-between items-center">
+        <h3 class="font-bold text-[18px] text-bank-gray-dark">Actividad Reciente</h3>
+        <button
+          class="flex items-center gap-2 border border-gray-200 px-4 py-2 rounded-xl text-[14px] font-semibold text-page-text hover:bg-gray-50 transition-colors cursor-pointer"
+        >
+          <SlidersHorizontal class="w-4 h-4 text-gray-500" />
+          Filtrar
+        </button>
+      </div>
+
+      <div class="flex flex-col">
+        <div
+          v-for="item in actividadReciente"
+          :key="item.id"
+          class="flex justify-between items-center py-4 border-b border-gray-100 last:border-none"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              :class="[
+                'w-11 h-11 rounded-xl flex justify-center items-center transition-colors',
+                item.esIngreso ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-600',
+              ]"
+            >
+              <component :is="item.icono" class="w-5 h-5" />
+            </div>
+            <div class="flex flex-col">
+              <p class="font-bold text-[15px] text-bank-gray-dark">{{ item.titulo }}</p>
+              <p class="text-[13px] text-gray-400 font-medium">{{ item.detalles }}</p>
+            </div>
+          </div>
+          <div>
+            <span
+              :class="[
+                'font-bold text-[15px]',
+                item.esIngreso ? 'text-emerald-600' : 'text-red-600',
+              ]"
+            >
+              {{ item.monto }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-2">
+        <button class="text-brand-primary font-bold text-[14px] hover:underline cursor-pointer">
+          Ver Historial Completo
+        </button>
       </div>
     </div>
   </section>
