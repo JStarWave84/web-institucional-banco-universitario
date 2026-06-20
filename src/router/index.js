@@ -52,6 +52,11 @@ const router = createRouter({
           component: () => import('../layouts/AuthLayout.vue'),
           children: [
             {
+              path: 'dashboard',
+              name: 'Dashboard',
+              component: () => import('../views/OnlineBanking/DashboardView.vue'),
+            },
+            {
               path: 'seguridad',
               name: 'Seguridad',
               component: () => import('../views/OnlineBanking/SecurityView.vue'),
