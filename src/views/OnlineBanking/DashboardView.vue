@@ -1,6 +1,13 @@
 <script setup>
 const balance = 'Bs. 12,450.00'
 const fechaActual = '12 de Abril 2025'
+
+const contactosFrecuentes = [
+  { id: 1, nombre: 'Mateo G.', avatar: '' },
+  { id: 2, nombre: 'Sofia L.', avatar: '' },
+  { id: 3, nombre: 'Lucas V.', avatar: '' },
+  { id: 4, nombre: 'Elena R.', avatar: '' },
+]
 </script>
 
 <template>
@@ -42,6 +49,50 @@ const fechaActual = '12 de Abril 2025'
       <div
         class="absolute -right-16 -bottom-16 w-64 h-64 bg-teal-600/20 rounded-full blur-3xl pointer-events-none"
       ></div>
+    </div>
+
+    <div class="flex flex-col gap-4">
+      <div class="flex justify-between items-center">
+        <h3 class="font-bold text-[18px] text-bank-gray-dark">Contactos Frecuentes</h3>
+        <button class="text-brand-primary font-bold text-[14px] hover:underline cursor-pointer">
+          Ver Todos
+        </button>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <div class="flex flex-col items-center gap-2">
+          <button
+            class="w-14 h-14 rounded-full bg-gray-100 hover:bg-gray-200 border border-dashed border-gray-300 flex justify-center items-center text-gray-500 text-xl font-medium transition-colors cursor-pointer"
+          >
+            +
+          </button>
+          <span class="text-[12px] font-medium text-page-text">Nuevo</span>
+        </div>
+
+        <div
+          v-for="contacto in contactosFrecuentes"
+          :key="contacto.id"
+          class="flex flex-col items-center gap-2"
+        >
+          <div
+            class="w-14 h-14 rounded-full bg-slate-800 border-2 border-white shadow-sm overflow-hidden flex justify-center items-center"
+          >
+            <img
+              v-if="contacto.avatar"
+              :src="contacto.avatar"
+              alt="Avatar"
+              class="w-full h-full object-cover"
+            />
+            <div
+              v-else
+              class="w-full h-full bg-gradient-to-tr from-slate-700 to-slate-900 flex justify-center items-center"
+            >
+              <span class="text-white font-bold text-xs">{{ contacto.nombre.charAt(0) }}</span>
+            </div>
+          </div>
+          <span class="text-[12px] font-medium text-bank-gray-dark">{{ contacto.nombre }}</span>
+        </div>
+      </div>
     </div>
   </section>
 </template>
