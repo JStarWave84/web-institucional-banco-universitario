@@ -138,7 +138,7 @@ function submit(e) {
 
             <p class="mt-4 text-center text-sm text-slate-500">
               <router-link
-                to="/bancaenlinea/recuperar-contrasena"
+                to="/bancaenlinea/recover-password"
                 class="font-medium text-teal-700 hover:underline"
               >¿Olvidaste tu contraseña?</router-link>
             </p>
