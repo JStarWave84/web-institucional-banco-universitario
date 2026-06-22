@@ -136,6 +136,13 @@ function submit(e) {
               </button>
             </div>
 
+            <p class="mt-4 text-center text-sm text-slate-500">
+              <router-link
+                to="/bancaenlinea/recuperar-contrasena"
+                class="font-medium text-teal-700 hover:underline"
+              >¿Olvidaste tu contraseña?</router-link>
+            </p>
+
             <p class="text-center text-sm text-slate-500">
               ¿Eres nuevo en el campus?
               <router-link
