@@ -7,11 +7,18 @@ import {
   Users,
   ArrowRightFromLine,
 } from '@lucide/vue'
+import { useRouter } from 'vue-router'
+import { storeToRefs } from 'pinia'
+import { useAuthStore } from '@/stores/auth'
 
-const userInfo = {
-  name: 'Juan',
-  surname: 'García',
-  role: 'Cliente',
+const router = useRouter()
+const authStore = useAuthStore()
+
+const { user } = storeToRefs(authStore)
+
+const handleLogout = () => {
+  authStore.logout()
+  router.push('/bancaenlinea/login')
 }
 
 const links = [
@@ -37,11 +44,11 @@ const links = [
             <span
               class="w-10 h-10 rounded-full flex justify-center items-center bg-brand-primary text-white"
             >
-              {{ userInfo.name.charAt(0) }}
+              {{ user.firstName?.charAt(0).toUpperCase() }}
             </span>
           </div>
           <div>
-            <span class="font-bold text-[14px] leading-5">Hola, {{ userInfo.name }}</span>
+            <span class="font-bold text-[14px] leading-5">Hola, {{ user.firstName }}</span>
           </div>
         </div>
       </div>
@@ -60,6 +67,7 @@ const links = [
     <div class="flex flex-col">
       <div class="flex flex-col px-4 pb-6">
         <button
+          @click="handleLogout"
           class="flex gap-3 px-4 py-3 rounded-xl hover:bg-red-200 transition-colors duration-200 cursor-pointer"
         >
           <ArrowRightFromLine class="w-4.5 h-4.5 text-red-600" />
