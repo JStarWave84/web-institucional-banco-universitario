@@ -1,8 +1,53 @@
 <script setup>
-import { ArrowUpRight, ArrowDownLeft, SlidersHorizontal } from '@lucide/vue'
+import { ref, onMounted } from 'vue'
+import { SlidersHorizontal, Calendar, Loader2 } from '@lucide/vue'
+import { storeToRefs } from 'pinia'
+import { useAuthStore } from '@/stores/auth'
+import { getMovements } from '@/api/movements'
+import RecentsMovementsItem from '@/components/RecentsMovementsItem.vue'
+import FilterDialog from '@/components/FilterDialog.vue'
 
-const balance = 'Bs. 12,450.00'
-const fechaActual = '12 de Abril 2025'
+const authStore = useAuthStore()
+
+const movements = ref([])
+const loadingMovements = ref(true)
+const isFilterOpen = ref(false)
+
+const { balance, loadingBalance } = storeToRefs(authStore)
+
+const formatCurrency = (value) => {
+  return new Intl.NumberFormat('es-VE', {
+    style: 'currency',
+    currency: 'VES',
+    minimumFractionDigits: 2,
+  }).format(value)
+}
+
+const timeToday = new Intl.DateTimeFormat('es-VE', {
+  dateStyle: 'long',
+}).format(new Date())
+
+const apiParams = ref({
+  page: 1,
+  page_size: 10, // Limitamos a 10 para vista rápida de Dashboard
+})
+
+const fetchTransactions = async () => {
+  try {
+    loadingMovements.value = true
+    const response = await getMovements(apiParams.value)
+    movements.value = response.data // Guarda el arreglo de movimientos
+  } catch (error) {
+    console.error('Error al cargar movimientos:', error)
+  } finally {
+    loadingMovements.value = false
+  }
+}
+
+const handleApplyFilters = (newParams) => {
+  apiParams.value = newParams
+  fetchTransactions()
+}
 
 const contactosFrecuentes = [
   { id: 1, nombre: 'Mateo G.', avatar: '' },
@@ -11,51 +56,17 @@ const contactosFrecuentes = [
   { id: 4, nombre: 'Elena R.', avatar: '' },
 ]
 
-const actividadReciente = [
-  {
-    id: 1,
-    tipo: 'consumo',
-    titulo: 'Consumo',
-    detalles: 'Hoy, 10:45 AM • Almuerzo',
-    monto: '-Bs. 4.50',
-    esIngreso: false,
-    icono: ArrowUpRight,
-  },
-  {
-    id: 2,
-    tipo: 'ingreso',
-    titulo: 'Beca Universitaria',
-    detalles: 'Ayer • Depósito',
-    monto: '+Bs. 1,200.00',
-    esIngreso: true,
-    icono: ArrowDownLeft,
-  },
-  {
-    id: 3,
-    tipo: 'consumo',
-    titulo: 'Consumo',
-    detalles: '24 Oct • Materiales',
-    monto: '-Bs. 124.99',
-    esIngreso: false,
-    icono: ArrowUpRight,
-  },
-  {
-    id: 4,
-    tipo: 'consumo',
-    titulo: 'Consumo',
-    detalles: '22 Oct • Pago compartido',
-    monto: '-Bs. 25.00',
-    esIngreso: false,
-    icono: ArrowUpRight,
-  },
-]
+onMounted(() => {
+  authStore.fetchBalance()
+  fetchTransactions()
+})
 </script>
 
 <template>
-  <section class="m-10 max-w-[944px] w-full flex flex-col gap-8">
+  <section class="m-10 max-w-236 w-full flex flex-col gap-8">
     <div class="flex justify-between items-start w-full">
       <div class="flex flex-col gap-1">
-        <h1 class="font-extrabold text-[40px] text-bank-gray-dark leading-10 tracking-[-1px]">
+        <h1 class="font-extrabold text-[40px] text-brand-primary leading-10 tracking-[-1px]">
           Tu Estado Académico
         </h1>
         <p class="text-[16px] leading-6 text-page-text">
@@ -63,21 +74,22 @@ const actividadReciente = [
         </p>
       </div>
       <div
-        class="flex items-center gap-2 bg-white border border-gray-100 px-4 py-2 rounded-xl shadow-sm"
+        class="flex items-center gap-2 bg-brand-bg-secondary text-brand-primary px-4 py-2 rounded-xl"
       >
-        <span class="text-xs font-semibold text-gray-400">{{ fechaActual }}</span>
+        <Calendar class="w-4 h-4" />
+        <span class="text-xs font-semibold">{{ timeToday }}</span>
       </div>
     </div>
 
     <div
-      class="relative w-full bg-gradient-to-br from-[#064E3B] to-[#022C22] p-10 rounded-2xl shadow-md overflow-hidden flex flex-col justify-between min-h-[240px]"
+      class="relative w-full bg-linear-to-br from-[#064E3B] to-[#022C22] p-10 rounded-2xl shadow-md overflow-hidden flex flex-col justify-between min-h-60"
     >
       <div class="flex flex-col gap-2 z-10">
         <span class="text-emerald-300/80 text-[14px] font-medium tracking-wide uppercase">
           Balance Disponible
         </span>
-        <h2 class="text-white font-black text-[54px] tracking-tight leading-none">
-          {{ balance }}
+        <h2 class="text-white font-bold text-[54px] tracking-tight leading-none">
+          {{ loadingBalance ? 'Cargando...' : formatCurrency(balance) }}
         </h2>
       </div>
       <div class="z-10">
@@ -126,7 +138,7 @@ const actividadReciente = [
             />
             <div
               v-else
-              class="w-full h-full bg-gradient-to-tr from-slate-700 to-slate-900 flex justify-center items-center"
+              class="w-full h-full bg-linear-to-tr from-slate-700 to-slate-900 flex justify-center items-center"
             >
               <span class="text-white font-bold text-xs">{{ contacto.nombre.charAt(0) }}</span>
             </div>
@@ -140,6 +152,7 @@ const actividadReciente = [
       <div class="flex justify-between items-center">
         <h3 class="font-bold text-[18px] text-bank-gray-dark">Actividad Reciente</h3>
         <button
+          @click="isFilterOpen = true"
           class="flex items-center gap-2 border border-gray-200 px-4 py-2 rounded-xl text-[14px] font-semibold text-page-text hover:bg-gray-50 transition-colors cursor-pointer"
         >
           <SlidersHorizontal class="w-4 h-4 text-gray-500" />
@@ -147,43 +160,42 @@ const actividadReciente = [
         </button>
       </div>
 
+      <FilterDialog
+        :is-open="isFilterOpen"
+        :initial-multiplier="String(apiParams.multiplier || '')"
+        :initial-page-size="apiParams.page_size"
+        @close="isFilterOpen = false"
+        @apply="handleApplyFilters"
+      />
+
       <div class="flex flex-col">
-        <div
-          v-for="item in actividadReciente"
-          :key="item.id"
-          class="flex justify-between items-center py-4 border-b border-gray-100 last:border-none"
-        >
-          <div class="flex items-center gap-4">
-            <div
-              :class="[
-                'w-11 h-11 rounded-xl flex justify-center items-center transition-colors',
-                item.esIngreso ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-600',
-              ]"
-            >
-              <component :is="item.icono" class="w-5 h-5" />
-            </div>
-            <div class="flex flex-col">
-              <p class="font-bold text-[15px] text-bank-gray-dark">{{ item.titulo }}</p>
-              <p class="text-[13px] text-gray-400 font-medium">{{ item.detalles }}</p>
-            </div>
-          </div>
-          <div>
-            <span
-              :class="[
-                'font-bold text-[15px]',
-                item.esIngreso ? 'text-emerald-600' : 'text-red-600',
-              ]"
-            >
-              {{ item.monto }}
-            </span>
+        <div v-if="loadingMovements">
+          <div class="flex justify-center items-center gap-1 py-6">
+            <Loader2 class="animate-spin text-brand-primary" />
+            <span class="text-page-text text-[14px] font-medium">Cargando movimientos...</span>
           </div>
         </div>
+
+        <div v-if="movements.length === 0 && !loadingMovements">
+          <div class="flex justify-center items-center gap-1 py-6">
+            <span class="text-page-text text-[14px] font-medium">No hay movimientos recientes</span>
+          </div>
+        </div>
+
+        <RecentsMovementsItem
+          v-for="movement in movements"
+          :key="movement.id"
+          :transaction="movement"
+        />
       </div>
 
       <div class="flex justify-center mt-2">
-        <button class="text-brand-primary font-bold text-[14px] hover:underline cursor-pointer">
+        <router-link
+          to="movimientos"
+          class="text-brand-primary font-bold text-[14px] hover:underline cursor-pointer"
+        >
           Ver Historial Completo
-        </button>
+        </router-link>
       </div>
     </div>
   </section>
