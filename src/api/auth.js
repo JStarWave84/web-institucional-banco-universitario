@@ -28,3 +28,22 @@ export const registerClient = async (
   })
   return response.data
 }
+
+export const forgotPassword = async (email) => {
+  const response = await api.post('/v1/public/client/user/forgot-password', { email })
+  return response.data
+}
+
+export const updatePassword = async (password, new_password) => {
+  const response = await api.patch('/v1/client/user/password', { password, new_password })
+  return response.data
+}
+
+export const resetPassword = async (email, code, new_password) => {
+  const response = await api.post('/v1/public/client/user/reset-password', {
+    email,
+    code,
+    new_password,
+  })
+  return response.data
+}

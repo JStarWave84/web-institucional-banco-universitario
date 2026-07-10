@@ -114,11 +114,15 @@ import { Plus, Search, LayoutGrid, ListFilter, ArrowRight, UserPlus, Pen, Trash 
             </div>
 
             <div class="w-17.5 h-8.5 gap-1">
-              <button class="w-8.5 h-8.5 rounded-full p-2">
+              <button
+                class="w-8.5 h-8.5 rounded-xl p-2 hover:bg-[#E7E8E9] transition-colors cursor-pointer"
+              >
                 <Pen class="w-4.5 h-4.5 text-[#6F7979]" />
               </button>
 
-              <button class="w-8 h-8.5 rounded-full p-2">
+              <button
+                class="w-8 h-8.5 rounded-xl hover:bg-[#ffb1b1] transition-colors p-2 cursor-pointer"
+              >
                 <trash class="w-4.5 h-4.5 text-[#BA1A1A]" />
               </button>
             </div>
@@ -153,11 +157,15 @@ import { Plus, Search, LayoutGrid, ListFilter, ArrowRight, UserPlus, Pen, Trash 
             </div>
 
             <div class="w-17.5 h-8.5 gap-1">
-              <button class="w-8.5 h-8.5 rounded-full p-2">
+              <button
+                class="w-8.5 h-8.5 rounded-xl p-2 hover:bg-[#E7E8E9] transition-colors cursor-pointer"
+              >
                 <Pen class="w-4.5 h-4.5 text-[#6F7979]" />
               </button>
 
-              <button class="w-8 h-8.5 rounded-full p-2">
+              <button
+                class="w-8 h-8.5 rounded-xl p-2 hover:bg-[#ffb1b1] transition-colors cursor-pointer"
+              >
                 <trash class="w-4.5 h-4.5 text-[#BA1A1A]" />
               </button>
             </div>
