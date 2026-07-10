@@ -7,15 +7,32 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
+  initialMultiplier: {
+    type: String,
+    default: '',
+  },
+  initialPageSize: {
+    type: Number,
+    default: 20,
+  },
 })
 
 const emit = defineEmits(['close', 'apply'])
 
-// Estados locales del formulario de filtros
 const localFilters = ref({
-  multiplier: '', // '' = Todos, '1' = Ingresos, '-1' = Egresos
-  page_size: 10, // Por defecto 10
+  multiplier: '',
+  page_size: 20,
 })
+
+watch(
+  () => props.isOpen,
+  (open) => {
+    if (open) {
+      localFilters.value.multiplier = props.initialMultiplier
+      localFilters.value.page_size = props.initialPageSize
+    }
+  },
+)
 
 const closeDialog = () => {
   emit('close')
@@ -82,6 +99,8 @@ const applyFilters = () => {
               <option :value="10">10 movimientos</option>
               <option :value="20">20 movimientos</option>
               <option :value="50">50 movimientos</option>
+              <option :value="100">100 movimientos</option>
+              <option :value="200">200 movimientos</option>
             </select>
           </label>
         </div>

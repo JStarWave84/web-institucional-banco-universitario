@@ -162,6 +162,8 @@ onMounted(() => {
 
       <FilterDialog
         :is-open="isFilterOpen"
+        :initial-multiplier="String(apiParams.multiplier || '')"
+        :initial-page-size="apiParams.page_size"
         @close="isFilterOpen = false"
         @apply="handleApplyFilters"
       />
