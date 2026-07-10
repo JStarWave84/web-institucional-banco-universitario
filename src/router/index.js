@@ -48,6 +48,11 @@ const router = createRouter({
           component: () => import('../views/CrearCuentaView.vue'),
         },
         {
+          path: 'recover-password',
+          name: 'RecoverPassword',
+          component: () => import('../views/RecoverPasswordView.vue'),
+        },
+        {
           path: '',
           component: () => import('../layouts/AuthLayout.vue'),
           children: [
