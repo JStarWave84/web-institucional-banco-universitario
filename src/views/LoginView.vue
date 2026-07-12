@@ -1,13 +1,47 @@
 <script setup>
 import { ref } from 'vue'
-import { GraduationCap } from '@lucide/vue'
+import { GraduationCap, Loader2, Mail } from '@lucide/vue'
+import { useRouter } from 'vue-router'
+import { loginSchema } from '@/schemas/auth.schema'
+import { useAuthStore } from '@/stores/auth'
 
-const email = ref('')
-const password = ref('')
+const router = useRouter()
+const authStore = useAuthStore()
+
+const form = ref({
+  email: '',
+  password: '',
+})
+
+const errors = ref({})
+const loading = ref(false)
+
 const showPassword = ref(false)
 
-function submit(e) {
-  e.preventDefault()
+const submit = async () => {
+  errors.value = {}
+  loading.value = true
+
+  const result = loginSchema.safeParse(form.value)
+
+  if (!result.success) {
+    result.error.issues.forEach((issue) => {
+      const field = issue.path[0]
+      errors.value[field] = issue.message
+    })
+    loading.value = false
+    return
+  }
+
+  try {
+    await authStore.login(result.data)
+
+    router.push('/bancaenlinea/dashboard')
+  } catch (error) {
+    alert('Error al iniciar sesión: ' + (error.response?.data?.message || error.message))
+  } finally {
+    loading.value = false
+  }
 }
 </script>
 
@@ -57,18 +91,22 @@ function submit(e) {
           <h2 class="text-2xl font-extrabold text-slate-800">Bienvenido de nuevo</h2>
           <p class="mt-2 text-sm text-slate-500">Ingresa tus credenciales universitarias.</p>
 
-          <form @submit="submit" class="mt-8 space-y-6">
+          <form @submit.prevent="submit" class="mt-8 space-y-6">
             <label class="block">
               <span class="text-xs font-medium text-slate-600">Email</span>
               <div class="mt-1 relative">
                 <input
-                  v-model="email"
+                  v-model="form.email"
                   type="text"
-                  placeholder="ej. 2024-12345"
+                  placeholder="ej. myemail@gmail.com"
                   class="w-full rounded-full border border-transparent bg-slate-100 px-5 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-200"
+                  :aria-invalid="!!errors.email"
                 />
-                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">@</span>
+                <span class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400"
+                  ><Mail class="w-5 h-5"
+                /></span>
               </div>
+              <p v-if="errors.email" class="text-xs text-red-500">{{ errors.email }}</p>
             </label>
 
             <label class="block">
@@ -76,9 +114,10 @@ function submit(e) {
               <div class="mt-1 relative">
                 <input
                   :type="showPassword ? 'text' : 'password'"
-                  v-model="password"
+                  v-model="form.password"
                   placeholder="••••••••"
                   class="w-full rounded-full border border-transparent bg-slate-100 px-5 py-3 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-200"
+                  :aria-invalid="!!errors.password"
                 />
                 <button
                   type="button"
@@ -125,20 +164,32 @@ function submit(e) {
                   </svg>
                 </button>
               </div>
+              <p v-if="errors.password" class="text-xs text-red-500">{{ errors.password }}</p>
             </label>
 
             <div>
               <button
                 type="submit"
-                class="w-full rounded-full bg-teal-700 px-6 py-3 text-base font-semibold text-white shadow-md cursor-pointer hover:bg-teal-800"
+                class="w-full rounded-full flex justify-center items-center gap-1 bg-teal-700 px-6 py-3 text-base font-semibold text-white shadow-md cursor-pointer hover:bg-teal-800"
+                :disabled="loading"
               >
-                Iniciar Sesión
+                <Loader2 v-if="loading" class="w-4 h-4 mr-2 animate-spin" />
+                {{ loading ? 'Ingresando...' : 'Iniciar sesión' }}
               </button>
             </div>
 
+            <p class="mt-4 text-center text-sm text-slate-500">
+              <router-link
+                to="/bancaenlinea/recover-password"
+                class="font-medium text-teal-700 hover:underline"
+              >¿Olvidaste tu contraseña?</router-link>
+            </p>
+
             <p class="text-center text-sm text-slate-500">
               ¿Eres nuevo en el campus?
-              <router-link to="/crear-cuenta" class="font-medium text-teal-700 hover:underline"
+              <router-link
+                to="/bancaenlinea/crear-cuenta"
+                class="font-medium text-teal-700 hover:underline"
                 >Crea tu cuenta</router-link
               >
             </p>

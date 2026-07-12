@@ -25,9 +25,11 @@ const closeMenu = () => {
   <div
     class="flex justify-between items-center px-6 py-4 sticky top-0 bg-white/80 backdrop-blur-md shadow-xs z-30"
   >
-    <div>
-      <img src="@/assets/img/logo-no-background.png" width="251" alt="Logo Banco Universitario" />
-    </div>
+<div>
+  <router-link :to="links[0].path">
+    <img src="@/assets/img/logo-no-background.png" width="251" alt="Logo Banco Universitario" />
+  </router-link>
+</div>
 
     <div class="hidden lg:flex lg:items-center lg:gap-x-8">
       <router-link
