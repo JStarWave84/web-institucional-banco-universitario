@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,6 +41,7 @@ const router = createRouter({
         {
           path: 'login',
           name: 'Login',
+          meta: { guest: true },
           component: () => import('../views/LoginView.vue'),
         },
         {
@@ -59,21 +61,25 @@ const router = createRouter({
             {
               path: 'dashboard',
               name: 'Dashboard',
+              meta: { requiresAuth: true },
               component: () => import('../views/OnlineBanking/DashboardView.vue'),
             },
             {
               path: 'seguridad',
               name: 'Seguridad',
+              meta: { requiresAuth: true },
               component: () => import('../views/OnlineBanking/SecurityView.vue'),
             },
             {
               path: 'contactos',
               name: 'Contactos_Banco',
+              meta: { requiresAuth: true },
               component: () => import('../views/OnlineBanking/Contact_BankViews.vue'),
             },
             {
               path: 'movimientos',
               name: 'Movimientos',
+              meta: { requiresAuth: true },
               component: () => import('../views/OnlineBanking/Movements.vue'),
             },
           ],
@@ -87,6 +93,18 @@ const router = createRouter({
     }
     return { top: 0 }
   },
+})
+
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore()
+
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    next({ name: 'Login' })
+  } else if (to.meta.guest && authStore.isAuthenticated) {
+    next({ name: 'Dashboard' })
+  } else {
+    next()
+  }
 })
 
 export default router

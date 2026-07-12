@@ -26,7 +26,7 @@ const links = [
   { name: 'Movimientos', path: 'movimientos', icon: ReceiptText },
   { name: 'Transferir', path: 'transferir', icon: SendHorizontal },
   { name: 'Seguridad', path: 'seguridad', icon: Shield },
-  { name: 'Contactos', path: 'contactos', icon: Users },
+  { name: 'Contactos_Banco', path: 'contactos', icon: Users, label: 'Contactos' },
 ]
 </script>
 
@@ -58,9 +58,10 @@ const links = [
           :key="index"
           :to="link.path"
           class="flex gap-3 text-[#64748B] px-4 py-3 hover:bg-teal-300/30 hover:text-brand-primary transition-all duration-200 hover:translate-x-1 rounded-xl"
+          :class="{ 'bg-teal-300/30 text-brand-primary translate-x-1': $route.name === link.name }"
         >
           <component :is="link.icon" class="w-4.5 h-4.5" />
-          <span class="font-medium text-[14px] leading-5">{{ link.name }}</span>
+          <span class="font-medium text-[14px] leading-5">{{ link.label || link.name }}</span>
         </router-link>
       </nav>
     </div>

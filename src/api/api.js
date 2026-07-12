@@ -22,4 +22,16 @@ api.interceptors.request.use(
   }
 )
 
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401 && !error.config.url?.includes('/password')) {
+      sessionStorage.removeItem('bank_jwt')
+      sessionStorage.removeItem('bank_user')
+      window.location.href = '/bancaenlinea/login'
+    }
+    return Promise.reject(error)
+  }
+)
+
 export default api

@@ -6,14 +6,22 @@ import { useAuthStore } from '@/stores/auth'
 import { getMovements } from '@/api/movements'
 import RecentsMovementsItem from '@/components/RecentsMovementsItem.vue'
 import FilterDialog from '@/components/FilterDialog.vue'
+import UserDataDialog from '@/components/UserDataDialog.vue'
 
 const authStore = useAuthStore()
 
 const movements = ref([])
 const loadingMovements = ref(true)
 const isFilterOpen = ref(false)
+const isUserDataOpen = ref(false)
 
-const { balance, loadingBalance } = storeToRefs(authStore)
+const { balance, loadingBalance, user } = storeToRefs(authStore)
+
+function maskAccount(account) {
+  if (!account) return ''
+  const hidden = localStorage.getItem('bank_hide_account') !== 'false'
+  return hidden ? `****${account.slice(-4)}` : account
+}
 
 const formatCurrency = (value) => {
   return new Intl.NumberFormat('es-VE', {
@@ -92,12 +100,16 @@ onMounted(() => {
           {{ loadingBalance ? 'Cargando...' : formatCurrency(balance) }}
         </h2>
       </div>
-      <div class="z-10">
+      <div class="flex items-center gap-3 z-10">
         <button
+          @click="isUserDataOpen = true"
           class="bg-teal-200 hover:bg-teal-300 text-teal-950 font-bold px-6 py-3 rounded-full text-[14px] transition-all duration-200 shadow-sm cursor-pointer"
         >
           Ver mis datos
         </button>
+        <span class="text-emerald-300/80 text-[14px] font-mono tracking-wider select-all">
+          Cuenta: {{ maskAccount(user?.accountNumber) }}
+        </span>
       </div>
       <div
         class="absolute -right-16 -bottom-16 w-64 h-64 bg-teal-600/20 rounded-full blur-3xl pointer-events-none"
@@ -167,6 +179,8 @@ onMounted(() => {
         @close="isFilterOpen = false"
         @apply="handleApplyFilters"
       />
+
+      <UserDataDialog :open="isUserDataOpen" @close="isUserDataOpen = false" />
 
       <div class="flex flex-col">
         <div v-if="loadingMovements">
