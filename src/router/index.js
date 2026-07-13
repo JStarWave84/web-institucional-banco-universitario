@@ -71,6 +71,11 @@ const router = createRouter({
               name: 'Movimientos',
               component: () => import('../views/OnlineBanking/Movements.vue'),
             },
+            {
+              path: 'transferir',
+              name: 'Transferir',
+              component: () => import('../views/OnlineBanking/TransferView.vue'),
+            },
           ],
         },
       ],

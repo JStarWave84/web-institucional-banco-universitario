@@ -11,7 +11,14 @@ import {
 
 <template>
   <!--Hero section-->
-  <section class="pt-20 pb-32 bg-brand-bg">
+  <section class="relative pt-20 pb-32 bg-brand-bg">
+    <router-link
+      to="/bancaenlinea/transferir"
+      class="absolute top-6 right-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-red-600 text-white text-[22px] font-bold shadow-lg hover:bg-red-700 transition"
+      aria-label="Ir a transferir"
+    >
+      ×
+    </router-link>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 px-6">
       <div class="flex flex-col gap-6">
         <span
