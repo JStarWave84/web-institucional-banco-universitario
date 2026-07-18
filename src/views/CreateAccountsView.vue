@@ -16,6 +16,7 @@ const form = reactive({
   email: '',
   password: '',
   confirmPassword: '',
+  termsAccepted: false,
 })
 
 const errors = reactive({})
@@ -29,6 +30,11 @@ const clearError = (field) => {
 
 const submit = async () => {
   Object.keys(errors).forEach((key) => delete errors[key])
+
+  if (!form.termsAccepted) {
+    errors.terms = 'Debes aceptar los Términos y Condiciones'
+    return
+  }
 
   const result = registerSchema.safeParse(form)
 
@@ -79,6 +85,7 @@ const submit = async () => {
   <section class="min-h-screen bg-white">
     <div class="mx-auto max-w-360">
       <div class="grid lg:grid-cols-[0.42fr_0.58fr] min-h-screen">
+        <!--Visual Content-->
         <div
           class="relative overflow-hidden bg-[#055151] text-white flex flex-col justify-between p-10 sm:p-14 lg:p-16"
         >
@@ -131,8 +138,10 @@ const submit = async () => {
           </div>
         </div>
 
+        <!--Registration Form-->
         <div class="bg-white px-8 py-12 sm:px-16 lg:px-24 flex flex-col justify-center">
           <div class="max-w-xl w-full mx-auto">
+            <!--Info-->
             <div class="mb-10">
               <h2 class="text-4xl font-extrabold text-slate-900 tracking-tight">Crea tu cuenta</h2>
               <p class="mt-2 text-sm text-slate-500 font-medium">
@@ -140,6 +149,7 @@ const submit = async () => {
               </p>
             </div>
 
+            <!--Warning/Error API-->
             <p
               v-if="errors.global"
               class="mb-4 rounded-full bg-red-50 px-4 py-3 text-xs font-medium text-red-600"
@@ -147,7 +157,9 @@ const submit = async () => {
               {{ errors.global }}
             </p>
 
+            <!--Form-->
             <form class="space-y-6" @submit.prevent="submit">
+              <!--Personal Info Section-->
               <div class="space-y-4">
                 <div
                   class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-700"
@@ -156,9 +168,11 @@ const submit = async () => {
                   Información Personal
                 </div>
 
+                <!--Input Name/Last Name-->
                 <div class="grid gap-4 sm:grid-cols-2">
                   <label class="space-y-1.5 block">
                     <span class="text-xs font-bold text-slate-700 ml-1">Nombre(s)</span>
+
                     <input
                       v-model="form.first_name"
                       type="text"
@@ -167,12 +181,15 @@ const submit = async () => {
                       :class="{ 'ring-2 ring-red-400': errors.first_name }"
                       @input="clearError('first_name')"
                     />
+
                     <p v-if="errors.first_name" class="text-xs text-red-500 ml-2">
                       {{ errors.first_name }}
                     </p>
                   </label>
+
                   <label class="space-y-1.5 block">
                     <span class="text-xs font-bold text-slate-700 ml-1">Apellidos</span>
+
                     <input
                       v-model="form.last_name"
                       type="text"
@@ -181,15 +198,18 @@ const submit = async () => {
                       :class="{ 'ring-2 ring-red-400': errors.last_name }"
                       @input="clearError('last_name')"
                     />
+
                     <p v-if="errors.last_name" class="text-xs text-red-500 ml-2">
                       {{ errors.last_name }}
                     </p>
                   </label>
                 </div>
 
+                <!--Input Id/Date-->
                 <div class="grid gap-4 sm:grid-cols-2">
                   <label class="space-y-1.5 block">
                     <span class="text-xs font-bold text-slate-700 ml-1">Número de Documento</span>
+
                     <input
                       v-model="form.document_number"
                       type="text"
@@ -198,12 +218,15 @@ const submit = async () => {
                       :class="{ 'ring-2 ring-red-400': errors.document_number }"
                       @input="clearError('document_number')"
                     />
+
                     <p v-if="errors.document_number" class="text-xs text-red-500 ml-2">
                       {{ errors.document_number }}
                     </p>
                   </label>
+
                   <label class="space-y-1.5 block">
                     <span class="text-xs font-bold text-slate-700 ml-1">Fecha de Nacimiento</span>
+
                     <input
                       v-model="form.birth_date"
                       type="date"
@@ -211,6 +234,7 @@ const submit = async () => {
                       :class="{ 'ring-2 ring-red-400': errors.birth_date }"
                       @input="clearError('birth_date')"
                     />
+
                     <p v-if="errors.birth_date" class="text-xs text-red-500 ml-2">
                       {{ errors.birth_date }}
                     </p>
@@ -218,6 +242,7 @@ const submit = async () => {
                 </div>
               </div>
 
+              <!--Contact & Security Section-->
               <div class="space-y-4 pt-2">
                 <div
                   class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-700"
@@ -226,23 +251,28 @@ const submit = async () => {
                   Contacto y seguridad
                 </div>
 
+                <!--Input Phone & Email-->
                 <div class="grid gap-4 sm:grid-cols-2">
                   <label class="space-y-1.5 block">
                     <span class="text-xs font-bold text-slate-700 ml-1">Teléfono</span>
+
                     <input
                       v-model="form.phone_number"
                       type="tel"
-                      placeholder="Ej. 55 1234 5678"
+                      placeholder="Ej. 04145433902"
                       class="w-full rounded-full bg-[#e9ecef] px-5 py-3.5 text-sm text-slate-900 outline-none transition focus:bg-[#dee2e6]"
                       :class="{ 'ring-2 ring-red-400': errors.phone_number }"
                       @input="clearError('phone_number')"
                     />
+
                     <p v-if="errors.phone_number" class="text-xs text-red-500 ml-2">
                       {{ errors.phone_number }}
                     </p>
                   </label>
+
                   <label class="space-y-1.5 block">
                     <span class="text-xs font-bold text-slate-700 ml-1">Correo Electrónico</span>
+
                     <input
                       v-model="form.email"
                       type="email"
@@ -251,13 +281,16 @@ const submit = async () => {
                       :class="{ 'ring-2 ring-red-400': errors.email }"
                       @input="clearError('email')"
                     />
+
                     <p v-if="errors.email" class="text-xs text-red-500 ml-2">{{ errors.email }}</p>
                   </label>
                 </div>
 
+                <!--Input Password-->
                 <div class="space-y-4">
                   <label class="space-y-1.5 block">
                     <span class="text-xs font-bold text-slate-700 ml-1">Contraseña</span>
+
                     <div class="relative">
                       <input
                         v-model="form.password"
@@ -267,6 +300,7 @@ const submit = async () => {
                         :class="{ 'ring-2 ring-red-400': errors.password }"
                         @input="clearError('password')"
                       />
+
                       <button
                         type="button"
                         @click="showPassword = !showPassword"
@@ -276,6 +310,7 @@ const submit = async () => {
                         <Eye v-else class="h-5 w-5" />
                       </button>
                     </div>
+
                     <p v-if="errors.password" class="text-xs text-red-500 ml-2">
                       {{ errors.password }}
                     </p>
@@ -285,6 +320,7 @@ const submit = async () => {
                     <span class="text-xs font-bold text-slate-700 ml-1"
                       >Confirma tu Contraseña</span
                     >
+
                     <div class="relative">
                       <input
                         v-model="form.confirmPassword"
@@ -303,6 +339,7 @@ const submit = async () => {
                         <Eye v-else class="h-5 w-5" />
                       </button>
                     </div>
+
                     <p v-if="errors.confirmPassword" class="text-xs text-red-500 ml-2">
                       {{ errors.confirmPassword }}
                     </p>
@@ -310,6 +347,34 @@ const submit = async () => {
                 </div>
               </div>
 
+              <!--Button Terms and Submission-->
+              <div class="pt-2">
+                <div class="flex items-start justify-center px-2 gap-3 text-slate-600 select-none">
+                  <input
+                    v-model="form.termsAccepted"
+                    type="checkbox"
+                    class="mt-1 h-4 w-4 rounded-full border-slate-300 text-[#055151] focus:ring-[#055151]"
+                    @change="clearError('terms')"
+                  />
+
+                  <span class="w-[506.66px] pr-[40.16px] text-[14px] leading-normal font-medium">
+                    Acepto los
+                    <a href="#" class="font-semibold text-brand-primary underline"
+                      >Términos y Condiciones</a
+                    >
+                    y la
+                    <a href="#" class="font-semibold text-brand-primary underline"
+                      >Política de Privacidad</a
+                    >
+                    de Banco Universitario.
+                  </span>
+                </div>
+                <p v-if="errors.terms" class="text-xs text-red-500 ml-2 text-center font-semibold">
+                  {{ errors.terms }}
+                </p>
+              </div>
+
+              <!--Button Create Account-->
               <div class="pt-2">
                 <button
                   type="submit"
@@ -322,6 +387,7 @@ const submit = async () => {
                 </button>
               </div>
 
+              <!--Return to Login-->
               <p class="text-center text-xs text-slate-500 font-medium">
                 ¿Ya tienes cuenta?
                 <router-link
