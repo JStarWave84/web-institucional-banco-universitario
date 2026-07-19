@@ -82,6 +82,11 @@ const router = createRouter({
               meta: { requiresAuth: true },
               component: () => import('../views/OnlineBanking/Movements.vue'),
             },
+            {
+              path: 'transferir',
+              name: 'Transferir',
+              component: () => import('../views/OnlineBanking/TransferView.vue'),
+            },
           ],
         },
       ],
