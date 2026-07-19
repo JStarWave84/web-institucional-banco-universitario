@@ -12,7 +12,7 @@ import {
 
 <template>
   <!--(Sección 1) Hero-->
-  <section class="pt-20 pb-32 bg-brand-bg">
+  <section class="pt-20 pb-16 bg-brand-bg">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 px-6">
       <div class="flex flex-col gap-6">
         <span
