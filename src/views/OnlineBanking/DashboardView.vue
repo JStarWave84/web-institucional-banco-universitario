@@ -1,13 +1,16 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import { SlidersHorizontal, Calendar, Loader2 } from '@lucide/vue'
+import { useRouter } from 'vue-router'
+import { SlidersHorizontal, Calendar, Loader2, Plus, Copy } from '@lucide/vue'
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '@/stores/auth'
 import { getMovements } from '@/api/movements'
+import { getContacts } from '@/api/contact'
 import RecentsMovementsItem from '@/components/RecentsMovementsItem.vue'
 import FilterDialog from '@/components/FilterDialog.vue'
 import UserDataDialog from '@/components/UserDataDialog.vue'
 
+const router = useRouter()
 const authStore = useAuthStore()
 
 const movements = ref([])
@@ -16,6 +19,15 @@ const isFilterOpen = ref(false)
 const isUserDataOpen = ref(false)
 
 const { balance, loadingBalance, user } = storeToRefs(authStore)
+
+const copyTimeout = ref(false)
+
+function copyAccount(account) {
+  if (!account) return
+  navigator.clipboard.writeText(account)
+  copyTimeout.value = true
+  setTimeout(() => { copyTimeout.value = false }, 2000)
+}
 
 function maskAccount(account) {
   if (!account) return ''
@@ -57,16 +69,29 @@ const handleApplyFilters = (newParams) => {
   fetchTransactions()
 }
 
-const contactosFrecuentes = [
-  { id: 1, nombre: 'Mateo G.', avatar: '' },
-  { id: 2, nombre: 'Sofia L.', avatar: '' },
-  { id: 3, nombre: 'Lucas V.', avatar: '' },
-  { id: 4, nombre: 'Elena R.', avatar: '' },
-]
+const contactosFrecuentes = ref([])
+const loadingContacts = ref(true)
+
+function goToTransfer(contact) {
+  router.push({
+    name: 'Transferir',
+    state: { account_number: contact.account_number },
+  })
+}
 
 onMounted(() => {
   authStore.fetchBalance()
   fetchTransactions()
+  getContacts({ page: 1, page_size: 20 })
+    .then((res) => {
+      contactosFrecuentes.value = res.data.data || []
+    })
+    .catch(() => {
+      contactosFrecuentes.value = []
+    })
+    .finally(() => {
+      loadingContacts.value = false
+    })
 })
 </script>
 
@@ -107,9 +132,21 @@ onMounted(() => {
         >
           Ver mis datos
         </button>
-        <span class="text-emerald-300/80 text-[14px] font-mono tracking-wider select-all">
-          Cuenta: {{ maskAccount(user?.accountNumber) }}
-        </span>
+        <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2.5 outline-none">
+          <span class="text-emerald-300/80 text-[13px] font-mono tracking-wider select-all">
+            Cuenta: {{ maskAccount(user?.accountNumber) }}
+          </span>
+          <button
+            @click="copyAccount(user?.accountNumber)"
+            class="relative flex items-center justify-center w-7 h-7 rounded-lg hover:bg-white/10 transition-colors cursor-pointer outline-none focus:outline-none active:outline-none"
+          >
+            <Copy v-if="!copyTimeout" class="w-3.5 h-3.5 text-emerald-300/80" />
+            <span
+              v-else
+              class="text-[10px] font-bold text-emerald-300 whitespace-nowrap"
+            >Copiado</span>
+          </button>
+        </div>
       </div>
       <div
         class="absolute -right-16 -bottom-16 w-64 h-64 bg-teal-600/20 rounded-full blur-3xl pointer-events-none"
@@ -119,43 +156,54 @@ onMounted(() => {
     <div class="flex flex-col gap-4">
       <div class="flex justify-between items-center">
         <h3 class="font-bold text-[18px] text-bank-gray-dark">Contactos Frecuentes</h3>
-        <button class="text-brand-primary font-bold text-[14px] hover:underline cursor-pointer">
+        <router-link
+          to="/bancaenlinea/contactos"
+          class="text-brand-primary font-bold text-[14px] hover:underline cursor-pointer"
+        >
           Ver Todos
-        </button>
+        </router-link>
       </div>
 
       <div class="flex items-center gap-6">
-        <div class="flex flex-col items-center gap-2">
+        <router-link
+          to="/bancaenlinea/contactos"
+          class="flex flex-col items-center gap-2"
+        >
           <button
             class="w-14 h-14 rounded-full bg-gray-100 hover:bg-gray-200 border border-dashed border-gray-300 flex justify-center items-center text-gray-500 text-xl font-medium transition-colors cursor-pointer"
           >
-            +
+            <Plus class="w-5 h-5" />
           </button>
           <span class="text-[12px] font-medium text-page-text">Nuevo</span>
-        </div>
+        </router-link>
+
+        <template v-if="loadingContacts">
+          <div class="flex items-center gap-1">
+            <Loader2 class="w-4 h-4 text-brand-primary animate-spin" />
+            <span class="text-[12px] text-page-text">Cargando...</span>
+          </div>
+        </template>
+
+        <template v-else-if="contactosFrecuentes.length === 0">
+          <span class="text-[12px] text-page-text">Sin contactos</span>
+        </template>
 
         <div
-          v-for="contacto in contactosFrecuentes"
+          v-for="contacto in contactosFrecuentes.slice(0, 5)"
           :key="contacto.id"
-          class="flex flex-col items-center gap-2"
+          @click="goToTransfer(contacto)"
+          class="flex flex-col items-center gap-2 cursor-pointer"
         >
           <div
             class="w-14 h-14 rounded-full bg-slate-800 border-2 border-white shadow-sm overflow-hidden flex justify-center items-center"
           >
-            <img
-              v-if="contacto.avatar"
-              :src="contacto.avatar"
-              alt="Avatar"
-              class="w-full h-full object-cover"
-            />
             <div
-              v-else
               class="w-full h-full bg-linear-to-tr from-slate-700 to-slate-900 flex justify-center items-center"
             >
-              <span class="text-white font-bold text-xs">{{ contacto.nombre.charAt(0) }}</span>
+              <span class="text-white font-bold text-xs">{{ (contacto.alias || '?').charAt(0) }}</span>
             </div>
           </div>
-          <span class="text-[12px] font-medium text-bank-gray-dark">{{ contacto.nombre }}</span>
+          <span class="text-[12px] font-medium text-bank-gray-dark">{{ contacto.alias }}</span>
         </div>
       </div>
     </div>

@@ -85,7 +85,14 @@ const router = createRouter({
             {
               path: 'transferir',
               name: 'Transferir',
+              meta: { requiresAuth: true },
               component: () => import('../views/OnlineBanking/TransferView.vue'),
+            },
+            {
+              path: 'transferencia-exitosa',
+              name: 'TransferenciaExitosa',
+              meta: { requiresAuth: true },
+              component: () => import('../views/OnlineBanking/SuccessfulTransferView.vue'),
             },
           ],
         },

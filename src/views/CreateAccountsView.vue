@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { Eye, EyeOff, Lock, User, Loader2 } from '@lucide/vue'
 import { registerClient } from '@/api/auth'
 import { registerSchema } from '@/schemas/auth.schema'
+import AppDialog from '@/components/AppDialog.vue'
 
 const router = useRouter()
 
@@ -23,6 +24,12 @@ const errors = reactive({})
 const loading = ref(false)
 const showPassword = ref(false)
 const showConfirmPassword = ref(false)
+const showSuccessDialog = ref(false)
+
+const goToLogin = () => {
+  showSuccessDialog.value = false
+  router.push('/bancaenlinea/login')
+}
 
 const clearError = (field) => {
   if (errors[field]) delete errors[field]
@@ -61,7 +68,7 @@ const submit = async () => {
       result.data.password
     )
 
-    router.push('/bancaenlinea/login')
+    showSuccessDialog.value = true
   } catch (error) {
     if (error.response?.status === 409) {
       const field = error.response?.data?.errors?.[0]
@@ -402,4 +409,13 @@ const submit = async () => {
       </div>
     </div>
   </section>
+
+  <AppDialog
+    type="success"
+    :isOpen="showSuccessDialog"
+    title="¡Cuenta creada con éxito!"
+    description="Tu cuenta ha sido registrada correctamente. Ahora puedes iniciar sesión."
+    @close="goToLogin"
+    @confirm="goToLogin"
+  />
 </template>
