@@ -47,7 +47,6 @@ const objetives = [
 <template>
   <section class="pt-20 pb-16 bg-brand-bg overflow-x-hidden">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 px-6 items-center">
-      <!-- COLUMNA IZQUIERDA: Estructura exacta y dimensiones clonadas de la referencia -->
       <div class="flex flex-col gap-6">
         <span
           class="text-brand-primary bg-teal-300/30 px-4 py-2 uppercase text-[14px] font-bold rounded-4xl w-max"
@@ -67,9 +66,7 @@ const objetives = [
         </div>
       </div>
 
-      <!-- COLUMNA DERECHA: Gota geométrica imponente que cierra la brecha central -->
       <div class="relative flex justify-center lg:justify-end w-full">
-        <!-- Overlay card (Ajustada a la base de la gota de manera limpia) -->
         <div
           class="absolute left-4 md:left-12 lg:left-8 bottom-6 bg-brand-primary/80 rounded-4xl backdrop-blur-md p-6 lg:p-8 max-w-[200px] lg:max-w-[220.45px] flex flex-col gap-2 z-20 shadow-2xl"
         >
@@ -79,7 +76,6 @@ const objetives = [
           >
         </div>
 
-        <!-- Figura de Gota: Crecida proporcionalmente para ocupar el espacio del grid de 2 columnas sin dejar huecos -->
         <div
           class="w-full max-w-[400px] md:max-w-[460px] lg:max-w-[520px] aspect-square rotate-45 overflow-hidden rounded-tl-full rounded-tr-full rounded-bl-full shadow-2xl z-10 lg:-mr-4"
         >
