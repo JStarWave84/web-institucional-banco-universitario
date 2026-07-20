@@ -11,7 +11,7 @@ import {
 
 <template>
   <!--Hero section-->
-  <section class="pt-20 pb-32 bg-brand-bg">
+  <section class="pt-20 pb-16 bg-brand-bg">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 px-6">
       <div class="flex flex-col gap-6">
         <span
@@ -45,15 +45,16 @@ import {
           </a>
         </div>
       </div>
-      <div>
+
+      <div class="relative group">
         <img
           src="../assets/img/hero-image.jpg"
           alt="Imagen de estudiantes universitarios usando el banco"
-          class="w-full rounded-[48px] shadow-lg object-cover"
+          class="w-full rounded-[48px] shadow-lg object-cover relative z-10"
         />
-        <!-- Highlight Card -->
+
         <div
-          class="rounded-4xl shadow-lg px-6 py-6 flex gap-4 relative mx-auto lg:mx-0 lg:-left-6 -top-18 bg-white w-81"
+          class="absolute -bottom-6 left-1/2 -translate-x-1/2 lg:left-0 lg:-translate-x-6 lg:bottom-12 z-20 bg-white rounded-4xl shadow-xl px-6 py-6 flex gap-4 w-72 md:w-81"
         >
           <div class="bg-teal-300 rounded-4xl p-2 flex items-center">
             <ShieldCheck class="text-brand-primary" />

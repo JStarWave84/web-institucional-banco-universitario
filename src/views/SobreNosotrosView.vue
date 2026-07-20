@@ -45,42 +45,46 @@ const objetives = [
 </script>
 
 <template>
-  <section class="bg-brand-bg grid grid-cols-12 gap-12 pt-20 pb-32 overflow-x-hidden px-6">
-    <div class="col-span-7 flex flex-col gap-[30.8px]">
-      <span
-        class="text-brand-primary bg-teal-300/30 px-4 py-2 uppercase text-[14px] font-bold rounded-4xl w-max"
-        >Espacio Académico</span
-      >
-      <h1 class="font-extrabold text-[42px] md:text-[56px] leading-[1.1] md:leading-18">
-        Cultivando tu
-        <span class="text-[#00928b] font-extrabold italic">Futuro</span> <br />
-        Financiero.
-      </h1>
-
-      <p class="text-page-text text-[18px] leading-[29.3px] max-w-xl">
-        Somos la institución diseñada por y para la comunidad universitaria, transformando la banca
-        tradicional en un oasis de crecimiento académico y económico.
-      </p>
-    </div>
-
-    <div class="col-span-5 relative">
-      <!-- Overlay card (pequeña etiqueta) -->
-      <div
-        class="absolute left-26 bottom-5 bg-brand-primary/80 rounded-4xl backdrop-blur-md p-8 max-w-[220.45px] flex flex-col gap-2 z-10"
-      >
-        <span class="text-white font-bold text-[36px] leading-10">+50k</span>
-        <span class="text-white text-[14px] leading-[17.5px]"
-          >Estudiantes confían en nuestra visión de futuro</span
+  <section class="pt-20 pb-20 bg-brand-bg overflow-x-hidden">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 px-6 items-center">
+      <div class="flex flex-col gap-6">
+        <span
+          class="text-brand-primary bg-teal-300/30 px-4 py-2 uppercase text-[14px] font-bold rounded-4xl w-max"
+          >Espacio Académico</span
         >
+        <h1 class="font-extrabold text-[42px] md:text-[72px] leading-[1.1] md:leading-18">
+          Cultivando tu <br />
+          <span class="text-[#00928b] font-normal italic">Futuro</span> <br />
+          Financiero.
+        </h1>
+
+        <div class="pt-2 w-full md:w-lg">
+          <p class="text-[18px] md:text-[18px] leading-7 text-page-text">
+            Somos la institution diseñada por y para la comunidad universitaria, transformando la
+            banca tradicional en un oasis de crecimiento académico y económico.
+          </p>
+        </div>
       </div>
-      <div
-        class="w-[485.34px] h-[485.34px] rotate-45 transform translate-x-32 overflow-hidden rounded-tl-full rounded-tr-full rounded-bl-full shadow-lg"
-      >
-        <img
-          src="../assets/img/about-us-hero-image.jpg"
-          class="w-full h-full object-cover transform -rotate-45 scale-[1.4142]"
-          alt="Edificios universitarios"
-        />
+
+      <div class="relative flex justify-center w-full">
+        <div
+          class="absolute left-6 md:left-16 lg:left-10 bottom-4 bg-brand-primary/80 rounded-4xl backdrop-blur-md p-5 max-w-[180px] lg:max-w-[200px] flex flex-col gap-1 z-20 shadow-2xl"
+        >
+          <span class="text-white font-bold text-[28px] lg:text-[32px] leading-8">+50k</span>
+          <span class="text-white text-[12px] lg:text-[13px] leading-4"
+            >Estudiantes confían en nuestra visión de futuro</span
+          >
+        </div>
+
+        <div
+          class="w-full max-w-[300px] md:max-w-[350px] lg:max-w-[380px] aspect-square rotate-45 overflow-hidden rounded-tl-full rounded-tr-full rounded-bl-full shadow-2xl z-10"
+        >
+          <img
+            src="../assets/img/about-us-hero-image.jpg"
+            class="w-full h-full object-cover transform -rotate-45 scale-[1.4142]"
+            alt="Edificios universitarios"
+          />
+        </div>
       </div>
     </div>
   </section>
