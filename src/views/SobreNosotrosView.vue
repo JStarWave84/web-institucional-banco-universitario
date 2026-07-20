@@ -45,7 +45,7 @@ const objetives = [
 </script>
 
 <template>
-  <section class="pt-20 pb-16 bg-brand-bg overflow-x-hidden">
+  <section class="pt-20 pb-20 bg-brand-bg overflow-x-hidden">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 px-6 items-center">
       <div class="flex flex-col gap-6">
         <span
@@ -60,24 +60,24 @@ const objetives = [
 
         <div class="pt-2 w-full md:w-lg">
           <p class="text-[18px] md:text-[18px] leading-7 text-page-text">
-            Somos la institución diseñada por y para la comunidad universitaria, transformando la
+            Somos la institution diseñada por y para la comunidad universitaria, transformando la
             banca tradicional en un oasis de crecimiento académico y económico.
           </p>
         </div>
       </div>
 
-      <div class="relative flex justify-center lg:justify-end w-full">
+      <div class="relative flex justify-center w-full">
         <div
-          class="absolute left-4 md:left-12 lg:left-8 bottom-6 bg-brand-primary/80 rounded-4xl backdrop-blur-md p-6 lg:p-8 max-w-[200px] lg:max-w-[220.45px] flex flex-col gap-2 z-20 shadow-2xl"
+          class="absolute left-6 md:left-16 lg:left-10 bottom-4 bg-brand-primary/80 rounded-4xl backdrop-blur-md p-5 max-w-[180px] lg:max-w-[200px] flex flex-col gap-1 z-20 shadow-2xl"
         >
-          <span class="text-white font-bold text-[32px] lg:text-[36px] leading-10">+50k</span>
-          <span class="text-white text-[13px] lg:text-[14px] leading-[17.5px]"
+          <span class="text-white font-bold text-[28px] lg:text-[32px] leading-8">+50k</span>
+          <span class="text-white text-[12px] lg:text-[13px] leading-4"
             >Estudiantes confían en nuestra visión de futuro</span
           >
         </div>
 
         <div
-          class="w-full max-w-[400px] md:max-w-[460px] lg:max-w-[520px] aspect-square rotate-45 overflow-hidden rounded-tl-full rounded-tr-full rounded-bl-full shadow-2xl z-10 lg:-mr-4"
+          class="w-full max-w-[300px] md:max-w-[350px] lg:max-w-[380px] aspect-square rotate-45 overflow-hidden rounded-tl-full rounded-tr-full rounded-bl-full shadow-2xl z-10"
         >
           <img
             src="../assets/img/about-us-hero-image.jpg"
