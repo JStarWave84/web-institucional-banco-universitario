@@ -8,11 +8,17 @@ import {
   FileSpreadsheet,
   BookType,
 } from '@lucide/vue'
+import { useScrollReveal } from '@/composables/useScrollReveal'
+
+const { el: programsEl, isVisible: programsVisible } = useScrollReveal()
+const { el: storiesEl, isVisible: storiesVisible } = useScrollReveal()
+const { el: resourcesEl, isVisible: resourcesVisible } = useScrollReveal()
 </script>
 
 <template>
+  <div>
   <!--(Sección 1) Hero-->
-  <section class="pt-20 pb-32 bg-brand-bg">
+  <section class="pt-20 pb-16 bg-brand-bg overflow-x-hidden">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 px-6">
       <div class="flex flex-col gap-6">
         <span
@@ -68,9 +74,13 @@ import {
   </section>
 
   <!--(Sección 2) Programas de Formación-->
-  <section class="py-24 bg-brand-bg-secondary">
+  <section ref="programsEl" class="py-24 bg-brand-bg-secondary overflow-x-hidden">
     <div class="container mx-auto px-6">
-      <div class="mb-12">
+      <div
+        class="mb-12"
+        :class="programsVisible ? 'animate-fade-in-up' : 'opacity-0'"
+        style="will-change: transform, opacity"
+      >
         <h2 class="text-brand-primary font-extrabold text-[36px] mb-2">Programas de Formación</h2>
         <p class="text-page-text text-lg max-w-2xl">
           Descubre una ruta de aprendizaje adaptada a tus necesidades financieras, desde lo básico
@@ -79,8 +89,11 @@ import {
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Programa Principal -->
-        <div class="md:col-span-2 bg-gray-50 rounded-[40px] grid grid-cols-2 p-8 overflow-hidden">
+        <div
+          class="md:col-span-2 bg-gray-50 rounded-[40px] grid grid-cols-2 p-8 overflow-hidden"
+          :class="programsVisible ? 'animate-fade-in-up' : 'opacity-0'"
+          style="will-change: transform, opacity"
+        >
           <div class="flex flex-col justify-between">
             <div class="flex flex-col gap-4">
               <TrendingUp :size="30" class="text-brand-primary" />
@@ -110,7 +123,11 @@ import {
           </div>
         </div>
 
-        <div class="bg-brand-primary p-10 rounded-[40px] text-white flex flex-col justify-between">
+        <div
+          class="bg-brand-primary p-10 rounded-[40px] text-white flex flex-col justify-between"
+          :class="programsVisible ? 'animate-fade-in-up' : 'opacity-0'"
+          :style="{ animationDelay: '100ms', willChange: 'transform, opacity' }"
+        >
           <CreditCard :size="40" class="mb-6 text-teal-200" />
           <div>
             <h3 class="text-2xl font-bold mb-4 text-white">Crédito Responsable</h3>
@@ -126,7 +143,11 @@ import {
           </div>
         </div>
 
-        <div class="bg-white p-10 rounded-[40px]">
+        <div
+          class="bg-white p-10 rounded-[40px]"
+          :class="programsVisible ? 'animate-fade-in-up' : 'opacity-0'"
+          :style="{ animationDelay: '200ms', willChange: 'transform, opacity' }"
+        >
           <PiggyBank class="text-brand-primary mb-4" :size="32" />
           <h3 class="text-xl font-bold text-brand-primary mb-2">Ahorro Inteligente</h3>
           <p class="text-page-text text-sm mb-6">
@@ -137,6 +158,8 @@ import {
 
         <div
           class="md:col-span-2 bg-linear-to-br from-[#82F2EA] to-white p-10 rounded-[40px] flex items-center justify-between"
+          :class="programsVisible ? 'animate-fade-in-up' : 'opacity-0'"
+          :style="{ animationDelay: '300ms', willChange: 'transform, opacity' }"
         >
           <div class="max-w-md">
             <h3 class="text-2xl font-bold text-brand-primary mb-2">
@@ -146,7 +169,7 @@ import {
               Preparación financiera para la transición al mundo laboral y jubilación temprana.
             </p>
             <button
-              class="mt-6 bg-white text-brand-primary px-6 py-2 rounded-full font-bold text-sm shadow-sm"
+              class="mt-6 bg-white text-brand-primary px-6 py-2 rounded-full font-bold text-sm shadow-sm hover:shadow-md transition-shadow"
             >
               PRÓXIMAMENTE
             </button>
@@ -160,13 +183,21 @@ import {
   </section>
 
   <!--(Sección 3) Historias de Éxito-->
-  <section class="px-6 py-24 bg-brand-bg">
-    <div class="max-w-7xl mx-auto text-center mb-16">
+  <section ref="storiesEl" class="px-6 py-24 bg-brand-bg overflow-x-hidden">
+    <div
+      class="max-w-7xl mx-auto text-center mb-16"
+      :class="storiesVisible ? 'animate-fade-in-up' : 'opacity-0'"
+      style="will-change: transform, opacity"
+    >
       <h2 class="text-brand-primary font-extrabold text-[36px]">Historias de Éxito</h2>
     </div>
 
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
-      <div class="bg-white p-12 rounded-4xl shadow-lg relative flex flex-col gap-8">
+      <div
+        class="bg-white p-12 rounded-4xl shadow-lg relative flex flex-col gap-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+        :class="storiesVisible ? 'animate-fade-in-up' : 'opacity-0'"
+        style="will-change: transform, opacity"
+      >
         <span
           class="absolute -top-6 left-12 text-[#85F5ED] opacity-50 font-['Liberation_Serif'] text-[96px] leading-none select-none"
         >
@@ -193,7 +224,11 @@ import {
         </div>
       </div>
 
-      <div class="bg-white p-10 rounded-4xl shadow-lg relative flex flex-col gap-8">
+      <div
+        class="bg-white p-10 rounded-4xl shadow-lg relative flex flex-col gap-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+        :class="storiesVisible ? 'animate-fade-in-up' : 'opacity-0'"
+        :style="{ animationDelay: '150ms', willChange: 'transform, opacity' }"
+      >
         <span
           class="absolute -top-6 left-12 text-[#85F5ED] opacity-50 font-['Liberation_Serif'] text-[96px] leading-none select-none"
         >
@@ -221,9 +256,11 @@ import {
       </div>
     </div>
 
-    <div class="max-w-7xl mx-auto">
+    <div ref="resourcesEl" class="max-w-7xl mx-auto">
       <div
         class="bg-brand-primary p-10 rounded-[48px] text-white flex flex-col lg:flex-row items-center justify-between gap-8"
+        :class="resourcesVisible ? 'animate-scale-in' : 'opacity-0'"
+        style="will-change: transform, opacity"
       >
         <div class="max-w-xl text-left w-full">
           <h2 class="text-[32px] font-bold mb-2 text-white">Recursos Gratuitos</h2>
@@ -236,7 +273,7 @@ import {
         <div class="flex flex-col sm:flex-row gap-6 w-full lg:w-auto">
           <a
             href="#"
-            class="flex items-center gap-4 bg-white/10 hover:bg-white/15 px-8 py-4 rounded-full transition-all text-white min-w-68.75 group"
+            class="flex items-center gap-4 bg-white/10 hover:bg-white/15 px-8 py-4 rounded-full transition-colors text-white min-w-68.75 group"
           >
             <FileSpreadsheet class="w-5 h-5 text-[#85F5ED] shrink-0" />
             <div class="text-left">
@@ -253,7 +290,7 @@ import {
 
           <a
             href="#"
-            class="flex items-center gap-4 bg-white/10 hover:bg-white/15 px-8 py-4 rounded-full transition-all text-white min-w-68.75 group"
+            class="flex items-center gap-4 bg-white/10 hover:bg-white/15 px-8 py-4 rounded-full transition-colors text-white min-w-68.75 group"
           >
             <BookType class="w-5 h-5 text-[#85F5ED] shrink-0" />
             <div class="text-left">
@@ -271,4 +308,5 @@ import {
       </div>
     </div>
   </section>
+  </div>
 </template>

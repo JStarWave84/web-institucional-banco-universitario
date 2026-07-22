@@ -7,11 +7,35 @@ import {
   Banknote,
   CircleCheck,
 } from '@lucide/vue'
+import { useScrollReveal } from '@/composables/useScrollReveal'
+
+const { el: servicesEl, isVisible: servicesVisible } = useScrollReveal()
+const { el: educationEl, isVisible: educationVisible } = useScrollReveal()
+const { el: socialEl, isVisible: socialVisible } = useScrollReveal()
+
+const serviceCards = [
+  {
+    icon: ArrowRightLeft,
+    title: 'Transferencias sin comisión',
+    desc: 'Envía y recibe dinero entre compañeros de cualquier universidad del país al instante y con costo cero.',
+  },
+  {
+    icon: Landmark,
+    title: 'Pago de matrícula',
+    desc: 'Gestiona el pago de tus unidades de crédito y semestres directamente desde nuestra app con convenios directos.',
+  },
+  {
+    icon: Banknote,
+    title: 'Cobro de becas',
+    desc: 'Recibe tus depósitos de becas nacionales e institucionales de forma automática y segura cada mes.',
+  },
+]
 </script>
 
 <template>
+  <div>
   <!--Hero section-->
-  <section class="pt-20 pb-32 bg-brand-bg">
+  <section class="pt-20 pb-16 bg-brand-bg overflow-x-hidden">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 px-6">
       <div class="flex flex-col gap-6">
         <span
@@ -45,15 +69,16 @@ import {
           </a>
         </div>
       </div>
-      <div>
+
+      <div class="relative group">
         <img
           src="../assets/img/hero-image.jpg"
           alt="Imagen de estudiantes universitarios usando el banco"
-          class="w-full rounded-[48px] shadow-lg object-cover"
+          class="w-full rounded-[48px] shadow-lg object-cover relative z-10"
         />
-        <!-- Highlight Card -->
+
         <div
-          class="rounded-4xl shadow-lg px-6 py-6 flex gap-4 relative mx-auto lg:mx-0 lg:-left-6 -top-18 bg-white w-81"
+          class="absolute -bottom-6 left-1/2 -translate-x-1/2 lg:left-0 lg:-translate-x-6 lg:bottom-12 z-20 bg-white rounded-4xl shadow-xl px-6 py-6 flex gap-4 w-72 md:w-81"
         >
           <div class="bg-teal-300 rounded-4xl p-2 flex items-center">
             <ShieldCheck class="text-brand-primary" />
@@ -68,10 +93,18 @@ import {
       </div>
     </div>
   </section>
+
   <!--Services section-->
-  <section class="py-24 bg-brand-bg-secondary">
+  <section
+    ref="servicesEl"
+    class="py-24 bg-brand-bg-secondary overflow-x-hidden"
+  >
     <div class="flex flex-col gap-16 px-6">
-      <div class="flex flex-col gap-4">
+      <div
+        class="flex flex-col gap-4"
+        :class="servicesVisible ? 'animate-fade-in-up' : 'opacity-0'"
+        style="will-change: transform, opacity"
+      >
         <h2 class="font-extrabold text-brand-primary text-[36px] leading-10">
           Servicios Especializados
         </h2>
@@ -79,44 +112,23 @@ import {
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 justify-items-center gap-8">
-        <div class="flex flex-col gap-4 p-8 bg-white shadow-lg rounded-4xl">
+        <div
+          v-for="(card, i) in serviceCards"
+          :key="card.title"
+          class="flex flex-col gap-4 p-8 bg-white shadow-lg rounded-4xl hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+          :class="servicesVisible ? 'animate-fade-in-up' : 'opacity-0'"
+          :style="{ animationDelay: `${i * 120 + 100}ms`, willChange: 'transform, opacity' }"
+        >
           <div
             class="bg-brand-bg-secondary rounded-4xl p-2 w-14 h-14 flex items-center justify-center"
           >
-            <ArrowRightLeft class="text-brand-primary" />
+            <component :is="card.icon" class="text-brand-primary w-6 h-6" />
           </div>
           <h3 class="pt-2 font-bold text-[20px] leading-7 text-brand-primary">
-            Transferencias sin comisión
+            {{ card.title }}
           </h3>
           <p class="text-page-text text-[16px] leading-6.5">
-            Envía y recibe dinero entre compañeros de cualquier universidad del país al instante y
-            con costo cero.
-          </p>
-        </div>
-
-        <div class="flex flex-col gap-4 p-8 bg-white shadow-lg rounded-4xl">
-          <div
-            class="bg-brand-bg-secondary rounded-4xl p-2 w-14 h-14 flex items-center justify-center"
-          >
-            <Landmark class="text-brand-primary" />
-          </div>
-          <h3 class="pt-2 font-bold text-[20px] leading-7 text-brand-primary">Pago de matrícula</h3>
-          <p class="text-page-text text-[16px] leading-6.5">
-            Gestiona el pago de tus unidades de crédito y semestres directamente desde nuestra app
-            con convenios directos.
-          </p>
-        </div>
-
-        <div class="flex flex-col gap-4 p-8 bg-white shadow-lg rounded-4xl">
-          <div
-            class="bg-brand-bg-secondary rounded-4xl p-2 w-14 h-14 flex items-center justify-center"
-          >
-            <Banknote class="text-brand-primary" />
-          </div>
-          <h3 class="pt-2 font-bold text-[20px] leading-7 text-brand-primary">Cobro de becas</h3>
-          <p class="text-page-text text-[16px] leading-6.5">
-            Recibe tus depósitos de becas nacionales e institucionales de forma automática y segura
-            cada mes.
+            {{ card.desc }}
           </p>
         </div>
       </div>
@@ -124,9 +136,16 @@ import {
   </section>
 
   <!--Education section-->
-  <section class="px-6 py-24 bg-brand-bg">
+  <section
+    ref="educationEl"
+    class="px-6 py-24 bg-brand-bg overflow-x-hidden"
+  >
     <div class="flex flex-col gap-12 lg:flex-row lg:gap-16">
-      <div class="hidden lg:block lg:w-1/2">
+      <div
+        class="hidden lg:block lg:w-1/2"
+        :class="educationVisible ? 'animate-fade-in-left' : 'opacity-0'"
+        style="will-change: transform, opacity"
+      >
         <img
           src="../assets/img/education-image.jpg"
           alt="Imagen de estudiantes universitarios aprendiendo sobre finanzas"
@@ -134,7 +153,11 @@ import {
         />
       </div>
 
-      <div class="flex flex-col w-full lg:w-1/2 justify-center gap-4">
+      <div
+        class="flex flex-col w-full lg:w-1/2 justify-center gap-4"
+        :class="educationVisible ? 'animate-fade-in-right' : 'opacity-0'"
+        :style="{ animationDelay: '150ms', willChange: 'transform, opacity' }"
+      >
         <span class="font-bold text-[14px] leading-5 tracking-[1.4px] text-brand-primary uppercase"
           >Formación para el Futuro</span
         >
@@ -178,8 +201,15 @@ import {
   </section>
 
   <!-- Social media CTA-->
-  <section class="py-12 bg-teal-100/50">
-    <div class="px-6 flex flex-col gap-8 lg:flex-row lg:justify-between lg:items-start">
+  <section
+    ref="socialEl"
+    class="py-12 bg-teal-100/50 overflow-x-hidden"
+  >
+    <div
+      class="px-6 flex flex-col gap-8 lg:flex-row lg:justify-between lg:items-start"
+      :class="socialVisible ? 'animate-fade-in-up' : 'opacity-0'"
+      style="will-change: transform, opacity"
+    >
       <div class="max-w-full lg:max-w-120">
         <h2 class="font-bold text-[24px] leading-8 text-brand-primary">
           Únete a nuestras redes sociales
@@ -193,7 +223,7 @@ import {
           <div class="flex items-center gap-3">
             <a
               href="https://www.facebook.com/bancouniversitariove"
-              class="bg-white rounded-full shadow-sm p-2"
+              class="bg-white rounded-full shadow-sm p-2 hover:shadow-md transition-shadow"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="w-6 h-6 fill-brand-primary"
@@ -215,7 +245,7 @@ import {
           <div class="flex items-center gap-3">
             <a
               href="https://www.instagram.com/bancouniversitariove"
-              class="bg-white rounded-full shadow-sm p-2"
+              class="bg-white rounded-full shadow-sm p-2 hover:shadow-md transition-shadow"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="w-6 h-6 fill-brand-primary"
@@ -237,7 +267,7 @@ import {
           <div class="flex items-center gap-3">
             <a
               href="https://www.x.com/bancouniversitariove"
-              class="bg-white rounded-full shadow-sm p-2"
+              class="bg-white rounded-full shadow-sm p-2 hover:shadow-md transition-shadow"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="w-6 h-6 fill-brand-primary"
@@ -250,7 +280,7 @@ import {
             <div class="flex flex-col">
               <span
                 class="font-bold leading-4 text-[12px] text-brand-primary tracking-[0.6px] uppercase"
-                >X</span
+                >Facebook</span
               >
               <span class="leading-5 text-[14px] text-brand-primary">@bancouniversitariove</span>
             </div>
@@ -259,4 +289,5 @@ import {
       </div>
     </div>
   </section>
+  </div>
 </template>

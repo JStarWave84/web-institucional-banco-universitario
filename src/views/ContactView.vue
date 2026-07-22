@@ -12,20 +12,25 @@ import {
   Users,
   SendHorizontal,
 } from '@lucide/vue'
+import { useScrollReveal } from '@/composables/useScrollReveal'
+
+const { el: infoEl, isVisible: infoVisible } = useScrollReveal()
+const { el: formEl, isVisible: formVisible } = useScrollReveal()
+const { el: locationEl, isVisible: locationVisible } = useScrollReveal()
 </script>
 
 <template>
-  <div class="flex flex-col justify-center items-center mt-12 mb-12 px-4 md:px-0">
+  <div class="flex flex-col justify-center items-center mt-12 mb-12 px-4 md:px-0 overflow-x-hidden">
     <main class="flex flex-col h-auto md:h-[1760.3px] max-w-304 w-full gap-24">
       <!--Hero Section-->
       <section class="flex flex-col h-auto md:h-84 gap-6">
-        <div class="flex items-center h-7 w-40.5 pt-1.5 pb-1.5 pr-4 pl-4 rounded-full bg-[#85F5ED]">
+        <div
+          class="flex items-center h-7 w-40.5 pt-1.5 pb-1.5 pr-4 pl-4 rounded-full bg-[#85F5ED]"
+        >
           <span class="font-bold text-[12px] text-[#00504C] leading-4"> CENTRO DE ATENCION </span>
         </div>
 
-        <h1
-          class="pt-[0.7px] font-extrabold text-[42px] md:text-[72px] text-[#004743] leading-[44px] md:leading-18"
-        >
+        <h1 class="pt-[0.7px] font-extrabold text-[42px] md:text-[72px] text-[#004743] leading-[44px] md:leading-18">
           Tu oasis de calma en el <br /><span class="text-[#00928b]"> mundo financiero.</span>
         </h1>
 
@@ -41,7 +46,10 @@ import {
       <section class="grid grid-cols-1 md:grid-cols-12 gap-8 w-full max-w-304 h-auto md:h-156">
         <!--Info Cards Columna-->
         <div
+          ref="infoEl"
           class="flex flex-col w-full md:w-[384px] h-auto md:h-156 pb-1.75 gap-6 col-span-1 md:col-start-9 md:col-span-4 md:row-start-1"
+          :class="infoVisible ? 'animate-fade-in-right' : 'opacity-0'"
+          style="will-change: transform, opacity"
         >
           <!--Direct Contact-->
           <div class="w-full md:w-[384px] h-auto md:h-58 rounded-4xl p-8 bg-[#004649]">
@@ -93,33 +101,31 @@ import {
           </div>
 
           <!--Social Media-->
-          <div
-            class="flex flex-col w-full md:w-[384px] h-auto md:h-41 rounded-4xl p-8 gap-6 bg-[#F2F4F4]"
-          >
+          <div class="flex flex-col w-full md:w-[384px] h-auto md:h-41 rounded-4xl p-8 gap-6 bg-[#F2F4F4]">
             <h3 class="font-['Plus_Jakarta_Sans'] font-bold text-[20px] text-[#004649] leading-7">
               Redes Sociales
             </h3>
             <div class="flex flex-wrap gap-4">
               <div
-                class="flex items-center justify-center w-12 h-12 rounded-full shadow-sm bg-white"
+                class="flex items-center justify-center w-12 h-12 rounded-full shadow-sm bg-white hover:shadow-md transition-shadow"
               >
                 <Share2 class="w-6 h-7 text-[#004649]" />
               </div>
 
               <div
-                class="flex items-center justify-center w-12 h-12 rounded-full shadow-sm bg-white"
+                class="flex items-center justify-center w-12 h-12 rounded-full shadow-sm bg-white hover:shadow-md transition-shadow"
               >
                 <Users class="w-6 h-7 text-[#004649]" />
               </div>
 
               <div
-                class="flex items-center justify-center w-12 h-12 rounded-full shadow-sm bg-white"
+                class="flex items-center justify-center w-12 h-12 rounded-full shadow-sm bg-white hover:shadow-md transition-shadow"
               >
                 <Earth class="w-6 h-7 text-[#004649]" />
               </div>
 
               <div
-                class="flex items-center justify-center w-12 h-12 rounded-full shadow-sm bg-white"
+                class="flex items-center justify-center w-12 h-12 rounded-full shadow-sm bg-white hover:shadow-md transition-shadow"
               >
                 <SquarePlay class="w-6 h-7 text-[#004649]" />
               </div>
@@ -127,9 +133,7 @@ import {
           </div>
 
           <!--Business Hours-->
-          <div
-            class="flex flex-col w-full md:w-[384px] h-auto md:h-43.25 rounded-[32px] p-8 gap-4 bg-[#82F2EA]"
-          >
+          <div class="flex flex-col w-full md:w-[384px] h-auto md:h-43.25 rounded-[32px] p-8 gap-4 bg-[#82F2EA]">
             <div class="flex w-full md:w-80 h-auto md:h-7 gap-3">
               <div class="text-[#006F6A]"><Clock /></div>
               <h3
@@ -175,7 +179,10 @@ import {
 
         <!--Form-->
         <div
+          ref="formEl"
           class="bg-white w-full max-w-full md:max-w-200 min-h-auto md:min-h-156 rounded-4xl border border-gray-100/70 px-6 md:px-12 pt-12 pb-16 gap-8 col-span-1 md:col-start-1 md:col-span-8 md:row-start-1 shadow-[0px_20px_40px_-10px_#085F6314]"
+          :class="formVisible ? 'animate-fade-in-left' : 'opacity-0'"
+          style="will-change: transform, opacity"
         >
           <h2
             class="w-full h-auto mb-8 font-['Plus_Jakarta_Sans'] font-bold text-[30px] leading-9 tracking-normal align-middle text-[#004649]"
@@ -184,7 +191,6 @@ import {
           </h2>
 
           <form class="flex flex-col w-full max-w-full md:max-w-176 gap-6">
-            <!--Box Name|Mail-->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="flex flex-col gap-2">
                 <label class="ml-1 font-bold text-[12px] text-[#3F4949] tracking-[1.2px] uppercase">
@@ -193,7 +199,7 @@ import {
                 <input
                   type="text"
                   placeholder="Ej. Juan Pérez"
-                  class="w-full h-14 rounded-[32px] px-6 bg-[#F2F4F4] focus:outline-none focus:ring-2 focus:ring-[#3F4949]/20 transition-all"
+                  class="w-full h-14 rounded-[32px] px-6 bg-[#F2F4F4] focus:outline-none focus:ring-2 focus:ring-[#3F4949]/20 focus:scale-[1.01] transition-all"
                 />
               </div>
 
@@ -204,12 +210,11 @@ import {
                 <input
                   type="email"
                   placeholder="usuario@ejemplo.com"
-                  class="w-full h-14 bg-[#F2F4F4] rounded-[32px] px-6 focus:outline-none focus:ring-2 focus:ring-[#3F4949]/20 transition-all"
+                  class="w-full h-14 bg-[#F2F4F4] rounded-[32px] px-6 focus:outline-none focus:ring-2 focus:ring-[#3F4949]/20 focus:scale-[1.01] transition-all"
                 />
               </div>
             </div>
 
-            <!--Box More-->
             <div class="flex flex-col gap-2">
               <label class="ml-1 font-bold text-[12px] text-[#3F4949] tracking-[1.2px] uppercase">
                 Asunto
@@ -217,20 +222,18 @@ import {
               <div class="w-full h-14 bg-[#F2F4F4] rounded-[32px] px-6"></div>
             </div>
 
-            <!--Box Message-->
             <div class="flex flex-col gap-2">
               <label class="ml-1 font-bold text-[12px] text-[#3F4949] tracking-[1.2px] uppercase">
                 Mensaje
               </label>
               <textarea
                 placeholder="¿Cómo podemos ayudarte hoy?"
-                class="w-full h-32 rounded-[32px] p-6 bg-[#F2F4F4] outline-none focus:ring-2 focus:ring-[#3F4949]/20 transition-all resize-none"
+                class="w-full h-32 rounded-[32px] p-6 bg-[#F2F4F4] outline-none focus:ring-2 focus:ring-[#3F4949]/20 focus:scale-[1.01] transition-all resize-none"
               ></textarea>
             </div>
 
-            <!--Send Message-->
             <button
-              class="flex items-center justify-center w-60.5 h-15 rounded-full gap-3 bg-linear-to-br from-[#004649] to-[#085F63] text-white hover:brightness-115"
+              class="flex items-center justify-center w-60.5 h-15 rounded-full gap-3 bg-linear-to-br from-[#004649] to-[#085F63] text-white hover:from-[#085F63] hover:to-[#004649] transition-all"
             >
               <span class="font-bold text-[18px]">Enviar Mensaje</span>
               <div class="flex items-center justify-center w-4.75 h-4">
@@ -243,11 +246,13 @@ import {
 
       <!--Location Section-->
       <section
+        ref="locationEl"
         class="grid grid-cols-1 md:grid-cols-2 grid-rows-1 w-full max-w-304 h-auto md:h-152 rounded-[32px] bg-[#F2F4F4]"
       >
-        <!--Direccion Sede Principal-->
         <div
           class="flex flex-col w-full md:w-152 h-auto md:h-152 pt-12 md:pt-[197.25px] pr-6 md:pr-16 pb-12 md:pb-[197.25px] pl-6 md:pl-16 row-start-1 col-start-1 row-span-1 col-span-1"
+          :class="locationVisible ? 'animate-fade-in-left' : 'opacity-0'"
+          style="will-change: transform, opacity"
         >
           <h2 class="mb-6 font-['Plus_Jakarta_Sans'] font-bold text-[30px] leading-9">
             Nuestra Sede Principal
@@ -267,19 +272,22 @@ import {
             href="https://www.google.com/maps"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex items-center gap-2"
+            class="flex items-center gap-2 group"
           >
-            <p class="gap-2 font-bold text-[16px] text-[#006A65] leading-6 tracking-normal">
+            <p class="gap-2 font-bold text-[16px] text-[#006A65] leading-6 tracking-normal group-hover:text-brand-secondary transition-colors">
               Ver en Google Maps
             </p>
             <div class="">
-              <ArrowRight class="w-5 h-5 text-[#006A65]" />
+              <ArrowRight class="w-5 h-5 text-[#006A65] group-hover:translate-x-1 transition-transform" />
             </div>
           </a>
         </div>
 
-        <!--Mapa-->
-        <div class="flex items-center justify-center relative w-full md:w-152 h-auto md:h-152">
+        <div
+          class="flex items-center justify-center relative w-full md:w-152 h-auto md:h-152"
+          :class="locationVisible ? 'animate-fade-in-right' : 'opacity-0'"
+          :style="{ animationDelay: '150ms', willChange: 'transform, opacity' }"
+        >
           <img
             src="../assets/img/map-caracas.png"
             alt="Mapa de Caracas"

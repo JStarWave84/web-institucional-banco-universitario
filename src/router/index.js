@@ -47,7 +47,7 @@ const router = createRouter({
         {
           path: 'crear-cuenta',
           name: 'CrearCuenta',
-          component: () => import('../views/CrearCuentaView.vue'),
+          component: () => import('../views/CreateAccountsView.vue'),
         },
         {
           path: 'recover-password',
@@ -81,6 +81,18 @@ const router = createRouter({
               name: 'Movimientos',
               meta: { requiresAuth: true },
               component: () => import('../views/OnlineBanking/Movements.vue'),
+            },
+            {
+              path: 'transferir',
+              name: 'Transferir',
+              meta: { requiresAuth: true },
+              component: () => import('../views/OnlineBanking/TransferView.vue'),
+            },
+            {
+              path: 'transferencia-exitosa',
+              name: 'TransferenciaExitosa',
+              meta: { requiresAuth: true },
+              component: () => import('../views/OnlineBanking/SuccessfulTransferView.vue'),
             },
           ],
         },

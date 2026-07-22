@@ -17,15 +17,16 @@ const formatDateLabel = (date) => {
   const yesterday = new Date(today)
   yesterday.setDate(yesterday.getDate() - 1)
 
-  const toDateStr = (d) => d.toISOString().split('T')[0]
+  const toLocalDateStr = (d) =>
+    `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
   const day = date.getDate()
   const month = date.toLocaleString('es-VE', { month: 'long' })
   const year = date.getFullYear()
 
-  if (toDateStr(date) === toDateStr(today)) {
+  if (toLocalDateStr(date) === toLocalDateStr(today)) {
     return `hoy, ${day} de ${month}`
   }
-  if (toDateStr(date) === toDateStr(yesterday)) {
+  if (toLocalDateStr(date) === toLocalDateStr(yesterday)) {
     return `ayer, ${day} de ${month}`
   }
   return `${day} de ${month} de ${year}`
@@ -35,7 +36,7 @@ const groupedMovements = computed(() => {
   const groups = {}
   for (const mov of movements.value) {
     const date = new Date(mov.created_at)
-    const dateKey = date.toISOString().split('T')[0]
+    const dateKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
     if (!groups[dateKey]) {
       groups[dateKey] = {
         date: dateKey,

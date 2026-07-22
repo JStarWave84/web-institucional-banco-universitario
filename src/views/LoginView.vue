@@ -4,6 +4,7 @@ import { GraduationCap, Loader2, Mail } from '@lucide/vue'
 import { useRouter } from 'vue-router'
 import { loginSchema } from '@/schemas/auth.schema'
 import { useAuthStore } from '@/stores/auth'
+import AppDialog from '@/components/AppDialog.vue'
 
 const router = useRouter()
 const authStore = useAuthStore()
@@ -17,6 +18,9 @@ const errors = ref({})
 const loading = ref(false)
 
 const showPassword = ref(false)
+
+const showErrorDialog = ref(false)
+const errorMessage = ref('')
 
 const submit = async () => {
   errors.value = {}
@@ -38,7 +42,8 @@ const submit = async () => {
 
     router.push('/bancaenlinea/dashboard')
   } catch (error) {
-    alert('Error al iniciar sesión: ' + (error.response?.data?.message || error.message))
+    errorMessage.value = error.response?.data?.message || error.message
+    showErrorDialog.value = true
   } finally {
     loading.value = false
   }
@@ -204,6 +209,14 @@ const submit = async () => {
     >
       ?
     </button>
+
+    <AppDialog
+      :is-open="showErrorDialog"
+      type="error"
+      title="Error al iniciar sesión"
+      :message="errorMessage"
+      @close="showErrorDialog = false"
+    />
   </section>
 </template>
 

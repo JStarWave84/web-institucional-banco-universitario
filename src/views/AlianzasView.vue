@@ -7,6 +7,11 @@ import {
   BriefcaseBusiness,
   CircleCheck,
 } from '@lucide/vue'
+import { useScrollReveal } from '@/composables/useScrollReveal'
+
+const { el: partnersEl, isVisible: partnersVisible } = useScrollReveal()
+const { el: privilegesEl, isVisible: privilegesVisible } = useScrollReveal()
+const { el: formEl, isVisible: formVisible } = useScrollReveal()
 
 const partners = [
   { acronym: 'UCV', name: 'Central de Venezuela', tagline: 'Patrimonio y Academia' },
@@ -45,7 +50,8 @@ const privileges = [
 </script>
 
 <template>
-  <section class="pt-20 pb-32 bg-brand-bg">
+  <div>
+  <section class="pt-20 pb-16 bg-brand-bg overflow-x-hidden">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 px-6">
       <div class="flex flex-col gap-6">
         <span
@@ -110,9 +116,13 @@ const privileges = [
     </div>
   </section>
 
-  <section class="bg-brand-bg-secondary px-8 py-24 flex flex-col">
+  <section ref="partnersEl" class="bg-brand-bg-secondary px-8 py-24 flex flex-col overflow-x-hidden">
     <div class="flex flex-col gap-16">
-      <div class="flex flex-col items-start gap-4">
+      <div
+        class="flex flex-col items-start gap-4"
+        :class="partnersVisible ? 'animate-fade-in-up' : 'opacity-0'"
+        style="will-change: transform, opacity"
+      >
         <h2 class="text-brand-primary font-bold text-[36px] leading-10">Universidades Aliadas</h2>
         <p class="text-page-text text-[16px] leading-6 max-w-2xl">
           Formamos parte de las casas de estudio más emblemáticas del país, ofreciendo una
@@ -122,9 +132,11 @@ const privileges = [
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
         <div
-          v-for="partner in partners"
+          v-for="(partner, i) in partners"
           :key="partner.acronym"
-          class="bg-white rounded-4xl shadow-lg px-8 pt-8 pb-20 flex flex-col items-center justify-center gap-4 text-center"
+          class="bg-white rounded-4xl shadow-lg px-8 pt-8 pb-20 flex flex-col items-center justify-center gap-4 text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+          :class="partnersVisible ? 'animate-fade-in-up' : 'opacity-0'"
+          :style="{ animationDelay: `${i * 100}ms`, willChange: 'transform, opacity' }"
         >
           <div
             class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center text-brand-primary font-bold text-lg"
@@ -138,9 +150,13 @@ const privileges = [
     </div>
   </section>
 
-  <section class="bg-brand-bg flex flex-col px-8 py-24">
+  <section ref="privilegesEl" class="bg-brand-bg flex flex-col px-8 py-24 overflow-x-hidden">
     <div class="flex flex-col gap-20">
-      <div class="flex flex-col items-center gap-6">
+      <div
+        class="flex flex-col items-center gap-6"
+        :class="privilegesVisible ? 'animate-fade-in-up' : 'opacity-0'"
+        style="will-change: transform, opacity"
+      >
         <h3 class="font-extrabold text-[48px] leading-12">Tu Carnet es tu Pasaporte Financiero</h3>
         <p class="text-page-text text-[20px] leading-7 max-w-3xl text-start lg:text-center">
           Como estudiante de nuestras universidades aliadas, accedes a un mundo de privilegios
@@ -150,9 +166,11 @@ const privileges = [
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div
-          class="flex flex-col p-10 rounded-4xl bg-white shadow-lg"
-          v-for="privilege in privileges"
+          class="flex flex-col p-10 rounded-4xl bg-white shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+          v-for="(privilege, i) in privileges"
           :key="privilege.title"
+          :class="privilegesVisible ? 'animate-fade-in-up' : 'opacity-0'"
+          :style="{ animationDelay: `${i * 120 + 100}ms`, willChange: 'transform, opacity' }"
         >
           <div class="pb-8">
             <component :is="privilege.icon" class="w-9.5 h-9.5 text-brand-primary" />
@@ -177,9 +195,13 @@ const privileges = [
     </div>
   </section>
 
-  <section class="bg-[#004649] flex flex-col px-8 py-24">
+  <section ref="formEl" class="bg-[#004649] flex flex-col px-8 py-24 overflow-x-hidden">
     <div class="grid grid-cols-5 gap-16">
-      <div class="col-span-5 md:col-span-5 lg:col-span-2 flex flex-col gap-[23.4px] pb-10">
+      <div
+        class="col-span-5 md:col-span-5 lg:col-span-2 flex flex-col gap-[23.4px] pb-10"
+        :class="formVisible ? 'animate-fade-in-left' : 'opacity-0'"
+        style="will-change: transform, opacity"
+      >
         <h2 class="text-white font-extrabold text-[36px] leading-11.25">
           ¿Desea ser parte de nuestro oasis educativo?
         </h2>
@@ -207,6 +229,8 @@ const privileges = [
 
       <div
         class="bg-white col-span-5 md:col-span-5 lg:col-span-3 flex flex-col px-10 pt-10 pb-14 rounded-[48px] shadow-lg"
+        :class="formVisible ? 'animate-fade-in-right' : 'opacity-0'"
+        :style="{ animationDelay: '150ms', willChange: 'transform, opacity' }"
       >
         <form class="grid grid-cols-2 gap-6" action="">
           <div class="flex flex-col gap-2 col-span-2 md:col-span-1">
@@ -218,7 +242,7 @@ const privileges = [
             <input
               type="text"
               id="institution-name"
-              class="bg-brand-bg-secondary px-4 py-4.25 rounded-full active:ring-2 active:ring-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-colors duration-200"
+              class="bg-brand-bg-secondary px-4 py-4.25 rounded-full active:ring-2 active:ring-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-all duration-200"
               placeholder="Ej. Universidad de Oriente"
               required
             />
@@ -233,7 +257,7 @@ const privileges = [
             <select
               name="alliance-type"
               id="alliance-type"
-              class="bg-brand-bg-secondary px-4 py-4.25 rounded-full active:ring-2 active:ring-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-colors duration-200"
+              class="bg-brand-bg-secondary px-4 py-4.25 rounded-full active:ring-2 active:ring-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-all duration-200"
               required
             >
               <option value="">Seleccionar</option>
@@ -252,7 +276,7 @@ const privileges = [
             <input
               type="email"
               id="institutional-email"
-              class="bg-brand-bg-secondary px-4 py-4.25 rounded-full active:ring-2 active:ring-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-colors duration-200"
+              class="bg-brand-bg-secondary px-4 py-4.25 rounded-full active:ring-2 active:ring-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-all duration-200"
               placeholder="universidad@udo.edu.ve"
               required
             />
@@ -267,7 +291,7 @@ const privileges = [
             <textarea
               id="proposal"
               rows="4"
-              class="bg-brand-bg-secondary px-4 py-4.25 rounded-[30px] active:ring-2 active:ring-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-colors duration-200 h-26 resize-none"
+              class="bg-brand-bg-secondary px-4 py-4.25 rounded-[30px] active:ring-2 active:ring-brand-primary focus:outline-none focus:ring-2 focus:ring-brand-primary transition-all duration-200 h-26 resize-none"
               placeholder="Cuéntenos sobre su interés en colaborar..."
               required
             ></textarea>
@@ -285,4 +309,5 @@ const privileges = [
       </div>
     </div>
   </section>
+  </div>
 </template>

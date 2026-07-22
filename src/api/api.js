@@ -25,7 +25,12 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401 && !error.config.url?.includes('/password')) {
+    if (
+      error.response?.status === 401 &&
+      !error.config.url?.includes('/password') &&
+      !error.config.url?.includes('/login') &&
+      !error.config.url?.includes('/register')
+    ) {
       sessionStorage.removeItem('bank_jwt')
       sessionStorage.removeItem('bank_user')
       window.location.href = '/bancaenlinea/login'
