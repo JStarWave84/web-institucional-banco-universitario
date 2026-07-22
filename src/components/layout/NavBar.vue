@@ -1,8 +1,12 @@
 <script setup>
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { Menu, X } from '@lucide/vue'
 
+const route = useRoute()
 const isMenuOpen = ref(false)
+
+const isActive = (path) => route.path === path
 
 const links = [
   { name: 'Servicios', path: '/' },
@@ -37,10 +41,12 @@ const closeMenu = () => {
         :key="index"
         :to="link.path"
         class="group text-page-text hover:text-brand-secondary transition-colors duration-200 relative"
+        :class="{ 'text-brand-secondary': isActive(link.path) }"
       >
         {{ link.name }}
         <span
-          class="hidden lg:block absolute left-0 -bottom-1 h-0.5 w-0 bg-brand-secondary transition-all duration-200 group-hover:w-full"
+          class="hidden lg:block absolute left-0 -bottom-1 h-0.5 bg-brand-secondary transition-all duration-200 group-hover:w-full"
+          :class="isActive(link.path) ? 'w-full' : 'w-0'"
         ></span>
       </router-link>
     </div>
@@ -72,6 +78,7 @@ const closeMenu = () => {
           :to="link.path"
           @click="closeMenu"
           class="text-page-text hover:text-brand-secondary transition-colors duration-200"
+          :class="{ 'text-brand-secondary font-semibold': isActive(link.path) }"
           >{{ link.name }}</router-link
         >
 

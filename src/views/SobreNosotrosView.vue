@@ -9,6 +9,11 @@ import {
   HeartHandshake,
   Lightbulb,
 } from '@lucide/vue'
+import { useScrollReveal } from '@/composables/useScrollReveal'
+
+const { el: missionEl, isVisible: missionVisible } = useScrollReveal()
+const { el: objectivesEl, isVisible: objectivesVisible } = useScrollReveal()
+const { el: ctaEl, isVisible: ctaVisible } = useScrollReveal()
 
 const objetives = [
   {
@@ -45,6 +50,7 @@ const objetives = [
 </script>
 
 <template>
+  <div>
   <section class="pt-20 pb-20 bg-brand-bg overflow-x-hidden">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 px-6 items-center">
       <div class="flex flex-col gap-6">
@@ -89,10 +95,12 @@ const objetives = [
     </div>
   </section>
 
-  <section class="bg-brand-bg-secondary flex flex-col px-6 py-24">
+  <section ref="missionEl" class="bg-brand-bg-secondary flex flex-col px-6 py-24 overflow-x-hidden">
     <div class="grid grid-cols-12 gap-8">
       <div
-        class="bg-white col-span-12 md:col-span-7 flex flex-col px-12 pt-12 pb-[77.25px] rounded-4xl shadow-lg relative overflow-hidden group"
+        class="bg-white col-span-12 md:col-span-7 flex flex-col px-12 pt-12 pb-[77.25px] rounded-4xl shadow-lg relative overflow-hidden group hover:shadow-xl transition-shadow duration-300"
+        :class="missionVisible ? 'animate-fade-in-left' : 'opacity-0'"
+        style="will-change: transform, opacity"
       >
         <div class="flex flex-col gap-[23.2px]">
           <Flag class="w-7.5 h-7.5 text-brand-primary" />
@@ -109,7 +117,9 @@ const objetives = [
       </div>
 
       <div
-        class="bg-brand-primary col-span-12 md:col-span-5 flex flex-col gap-[23.4px] px-12 py-12 rounded-4xl shadow-lg hover:bg-brand-secondary transition-colors duration-300 group"
+        class="bg-brand-primary col-span-12 md:col-span-5 flex flex-col gap-[23.4px] px-12 py-12 rounded-4xl shadow-lg hover:bg-brand-secondary transition-all duration-300 group"
+        :class="missionVisible ? 'animate-fade-in-right' : 'opacity-0'"
+        :style="{ animationDelay: '150ms', willChange: 'transform, opacity' }"
       >
         <Eye class="w-7.5 h-7.5 text-brand-secondary group-hover:text-brand-primary duration-300" />
         <h2 class="pt-[0.8px] text-white font-bold text-[30px] leading-9">Nuestra Visión</h2>
@@ -121,9 +131,13 @@ const objetives = [
     </div>
   </section>
 
-  <section class="bg-brand-bg px-6 py-24">
+  <section ref="objectivesEl" class="bg-brand-bg px-6 py-24 overflow-x-hidden">
     <div class="flex flex-col gap-16">
-      <div class="flex flex-col gap-4">
+      <div
+        class="flex flex-col gap-4"
+        :class="objectivesVisible ? 'animate-fade-in-up' : 'opacity-0'"
+        style="will-change: transform, opacity"
+      >
         <h2 class="font-extrabold text-brand-primary text-[36px] leading-10">
           Objetivos Estratégicos
         </h2>
@@ -132,9 +146,11 @@ const objetives = [
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div
-          class="col-span-1 rounded-4xl bg-brand-bg-secondary border border-[#BEC8C9]/30 shadow-lg p-8.25 group hover:bg-brand-primary transition duration-300"
-          v-for="objetive in objetives"
+          class="col-span-1 rounded-4xl bg-brand-bg-secondary border border-[#BEC8C9]/30 shadow-lg p-8.25 group hover:bg-brand-primary hover:shadow-xl transition-all duration-300"
+          v-for="(objetive, i) in objetives"
           :key="objetive.title"
+          :class="objectivesVisible ? 'animate-fade-in-up' : 'opacity-0'"
+          :style="{ animationDelay: `${i * 100}ms`, willChange: 'transform, opacity' }"
         >
           <span
             class="flex items-center justify-center w-14 h-14 bg-brand-primary/10 rounded-full mb-6 group-hover:bg-white transition duration-300"
@@ -147,7 +163,6 @@ const objetives = [
           >
             {{ objetive.title }}
           </h3>
-          <!-- al hacer hover aparece el texto-->
           <div
             class="pb-[0.88px] max-h-0 overflow-hidden opacity-0 invisible transition-all duration-300 group-hover:max-h-40 group-hover:opacity-100 group-hover:visible"
           >
@@ -163,9 +178,14 @@ const objetives = [
   </section>
 
   <section
-    class="bg-brand-bg-secondary flex items-center gap-12 px-10 md:px-20 py-20 mx-6 my-24 rounded-[48px]"
+    ref="ctaEl"
+    class="bg-brand-bg-secondary flex items-center gap-12 px-10 md:px-20 py-20 mx-6 my-24 rounded-[48px] overflow-x-hidden"
   >
-    <div class="flex flex-col gap-8 max-w-full md:max-w-140">
+    <div
+      class="flex flex-col gap-8 max-w-full md:max-w-140"
+      :class="ctaVisible ? 'animate-fade-in-left' : 'opacity-0'"
+      style="will-change: transform, opacity"
+    >
       <h2
         class="font-extrabold text-brand-primary text-[26px] leading-10 md:text-[48px] md:leading-12"
       >
@@ -175,20 +195,24 @@ const objetives = [
         <a
           href="#"
           target="_blank"
-          class="bg-brand-primary text-white font-bold text-[16px] leading-6 text-center py-4 px-8 rounded-full shadow-lg hover:bg-brand-secondary transition-colors duration-300"
+          class="bg-brand-primary text-white font-bold text-[16px] leading-6 text-center py-4 px-8 rounded-full shadow-lg hover:bg-brand-secondary transition-colors"
         >
           Abrir Cuenta Universitaria
         </a>
         <RouterLink
           to="/alianzas"
-          class="bg-white text-brand-primary font-bold text-[16px] leading-6 text-center py-4 px-8 rounded-full shadow-lg hover:bg-brand-primary hover:text-white transition-colors duration-300"
+          class="bg-white text-brand-primary font-bold text-[16px] leading-6 text-center py-4 px-8 rounded-full shadow-lg hover:bg-brand-primary hover:text-white transition-colors"
         >
           Conoce Nuestras Alianzas
         </RouterLink>
       </div>
     </div>
 
-    <div class="flex-1">
+    <div
+      class="flex-1"
+      :class="ctaVisible ? 'animate-fade-in-right' : 'opacity-0'"
+      :style="{ animationDelay: '150ms', willChange: 'transform, opacity' }"
+    >
       <img
         src="../assets/img/about-us-cta.jpg"
         class="object-cover rounded-[48px] shadow-lg"
@@ -196,4 +220,5 @@ const objetives = [
       />
     </div>
   </section>
+  </div>
 </template>
